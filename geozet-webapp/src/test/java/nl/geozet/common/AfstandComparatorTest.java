@@ -1,7 +1,7 @@
 package nl.geozet.common;
 
 import static nl.geozet.common.StringConstants.AFSTAND_NAAM;
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
 
 import org.geotools.data.DataUtilities;
 import org.geotools.feature.SchemaException;
@@ -13,15 +13,18 @@ import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 
 /**
- * Testcase voor {@link AfstandComparator}.
+ * 
+ * {@link junit.framework.TestCase Testcase} voor {@link AfstandComparator}.
+ * 
+ * @author mprins
  */
-public class AfstandComparatorTest extends TestCase {
+public class AfstandComparatorTest {
 
     /** testfeatures. */
     private SimpleFeature f1, f2, f3;
 
     /** feature builder. */
-    private SimpleFeatureBuilder sfBuilder;
+    private final SimpleFeatureBuilder sfBuilder;
 
     /**
      * Instantiates a new afstand comparator test.
@@ -30,9 +33,9 @@ public class AfstandComparatorTest extends TestCase {
      *             the schema exception
      */
     public AfstandComparatorTest() throws SchemaException {
-        SimpleFeatureType type = DataUtilities.createType("location",
+        final SimpleFeatureType type = DataUtilities.createType("location",
                 "Location:Point,Id:Integer,Name:String");
-        sfBuilder = new SimpleFeatureBuilder(type);
+        this.sfBuilder = new SimpleFeatureBuilder(type);
     }
 
     /*
@@ -40,15 +43,14 @@ public class AfstandComparatorTest extends TestCase {
      * 
      * @see junit.framework.TestCase#setUp()
      */
-    @Override
     @Before
-    protected void setUp() throws Exception {
-        f1 = sfBuilder.buildFeature("f1");
-        f2 = sfBuilder.buildFeature("f2");
-        f3 = sfBuilder.buildFeature("f3");
-        f1.getUserData().put(AFSTAND_NAAM, 1000d);
-        f2.getUserData().put(AFSTAND_NAAM, 1500d);
-        f3.getUserData().put(AFSTAND_NAAM, 1000d);
+    public void setUp() throws Exception {
+        this.f1 = this.sfBuilder.buildFeature("f1");
+        this.f2 = this.sfBuilder.buildFeature("f2");
+        this.f3 = this.sfBuilder.buildFeature("f3");
+        this.f1.getUserData().put(AFSTAND_NAAM, 1000d);
+        this.f2.getUserData().put(AFSTAND_NAAM, 1500d);
+        this.f3.getUserData().put(AFSTAND_NAAM, 1000d);
     }
 
     /*
@@ -56,10 +58,9 @@ public class AfstandComparatorTest extends TestCase {
      * 
      * @see junit.framework.TestCase#tearDown()
      */
-    @Override
     @After
-    protected void tearDown() throws Exception {
-        sfBuilder.reset();
+    public void tearDown() throws Exception {
+        this.sfBuilder.reset();
     }
 
     /**
@@ -68,10 +69,9 @@ public class AfstandComparatorTest extends TestCase {
      */
     @Test
     public void testCompare() {
-        AfstandComparator c = new AfstandComparator();
-        assertEquals(-1, c.compare(f1, f2));
-        assertEquals(1, c.compare(f2, f3));
-        assertEquals(0, c.compare(f1, f3));
+        final AfstandComparator c = new AfstandComparator();
+        assertEquals(-1, c.compare(this.f1, this.f2));
+        assertEquals(1, c.compare(this.f2, this.f3));
+        assertEquals(0, c.compare(this.f1, this.f3));
     }
-
 }
