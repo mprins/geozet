@@ -686,13 +686,13 @@ public class ServletBaseTest {
     public final void testDoDelete() {
         try {
             this.baseServlet.init(this.servletConfig);
-            this.baseServlet.doDelete(request, response);
+            this.baseServlet.doDelete(this.request, this.response);
             fail("Overwachte ondersteuning voor deze methode (DELETE).");
-        } catch (ServletException e) {
+        } catch (final ServletException e) {
             // verwacht
             assertNotNull(e.getMessage());
             assertTrue(e.getMessage().contains("DELETE"));
-        } catch (IOException e) {
+        } catch (final IOException e) {
             // niet verwacht
             fail(e.getMessage());
         }
@@ -706,13 +706,13 @@ public class ServletBaseTest {
     public final void testDoHead() {
         try {
             this.baseServlet.init(this.servletConfig);
-            this.baseServlet.doHead(request, response);
+            this.baseServlet.doHead(this.request, this.response);
             fail("Overwachte ondersteuning voor deze methode (HEAD).");
-        } catch (ServletException e) {
+        } catch (final ServletException e) {
             // verwacht
             assertNotNull(e.getMessage());
             assertTrue(e.getMessage().contains("HEAD"));
-        } catch (IOException e) {
+        } catch (final IOException e) {
             // niet verwacht
             fail(e.getMessage());
         }
@@ -726,13 +726,13 @@ public class ServletBaseTest {
     public final void testDoPut() {
         try {
             this.baseServlet.init(this.servletConfig);
-            this.baseServlet.doPut(request, response);
+            this.baseServlet.doPut(this.request, this.response);
             fail("Overwachte ondersteuning voor deze methode (PUT).");
-        } catch (ServletException e) {
+        } catch (final ServletException e) {
             // verwacht
             assertNotNull(e.getMessage());
             assertTrue(e.getMessage().contains("PUT"));
-        } catch (IOException e) {
+        } catch (final IOException e) {
             // niet verwacht
             fail(e.getMessage());
         }
@@ -746,13 +746,13 @@ public class ServletBaseTest {
     public final void testDoTrace() {
         try {
             this.baseServlet.init(this.servletConfig);
-            this.baseServlet.doTrace(request, response);
+            this.baseServlet.doTrace(this.request, this.response);
             fail("Overwachte ondersteuning voor deze methode (TRACE).");
-        } catch (ServletException e) {
+        } catch (final ServletException e) {
             // verwacht
             assertNotNull(e.getMessage());
             assertTrue(e.getMessage().contains("TRACE"));
-        } catch (IOException e) {
+        } catch (final IOException e) {
             // niet verwacht
             fail(e.getMessage());
         }
@@ -766,15 +766,54 @@ public class ServletBaseTest {
     public final void testDoOptions() {
         try {
             this.baseServlet.init(this.servletConfig);
-            this.baseServlet.doOptions(request, response);
+            this.baseServlet.doOptions(this.request, this.response);
             fail("Overwachte ondersteuning voor deze methode (OPTIONS).");
-        } catch (ServletException e) {
+        } catch (final ServletException e) {
             // verwacht
             assertNotNull(e.getMessage());
             assertTrue(e.getMessage().contains("OPTIONS"));
-        } catch (IOException e) {
+        } catch (final IOException e) {
             // niet verwacht
             fail(e.getMessage());
+        }
+    }
+
+    /**
+     * Test methode voor {@link ServletBase#parseLocation(HttpServletRequest)}.
+     */
+    @Test
+    public final void testParseLocation() {
+
+        final double[] expected = new double[] { Double.parseDouble(XCOORD),
+                Double.parseDouble(YCOORD), Double.parseDouble(STRAAL) };
+
+        // set up mock request
+        this.mockery.checking(new Expectations() {
+            {
+
+                this.oneOf(ServletBaseTest.this.request).getParameter("xcoord");
+                this.will(returnValue(XCOORD));
+                this.oneOf(ServletBaseTest.this.request).getParameter("ycoord");
+                this.will(returnValue(YCOORD));
+                this.atLeast(1).of(ServletBaseTest.this.request)
+                        .getParameter("straal");
+                this.will(returnValue(STRAAL));
+                this.atMost(2).of(ServletBaseTest.this.request)
+                        .getParameter("straal");
+                this.will(returnValue(STRAAL));
+            }
+        });
+
+        try {
+            this.baseServlet.init(this.servletConfig);
+            final double[] actual = this.baseServlet
+                    .parseLocation(this.request);
+            assertEquals(expected[0], actual[0], .1);
+            assertEquals(expected[1], actual[1], .1);
+            assertEquals(expected[2], actual[2], .1);
+        } catch (final ServletException e) {
+            fail("Servlet Exception voor testParseLocation() in test setup. "
+                    + e.getLocalizedMessage());
         }
     }
 }

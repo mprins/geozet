@@ -1,6 +1,7 @@
 package nl.geozet.common;
 
 import static nl.geozet.common.NumberConstants.DEFAULT_ITEMS_PER_PAGINA;
+import static nl.geozet.common.NumberConstants.OPENLS_ZOOMSCALE_STANDAARD;
 import static nl.geozet.common.StringConstants.CONFIG_PARAM_BEKENDMAKINGENSERVLET;
 import static nl.geozet.common.StringConstants.CONFIG_PARAM_BEKENDMAKINGSERVLET;
 import static nl.geozet.common.StringConstants.CONFIG_PARAM_GEOZETSERVLET;
@@ -9,6 +10,9 @@ import static nl.geozet.common.StringConstants.CONFIG_PARAM_PAGINALENGTE;
 import static nl.geozet.common.StringConstants.CONFIG_PARAM_RESOURCENAME;
 import static nl.geozet.common.StringConstants.CONFIG_PARAM_VLAKBEKENDMAKINGSERVLET;
 import static nl.geozet.common.StringConstants.REQ_PARAM_PAGEOFFSET;
+import static nl.geozet.common.StringConstants.REQ_PARAM_STRAAL;
+import static nl.geozet.common.StringConstants.REQ_PARAM_XCOORD;
+import static nl.geozet.common.StringConstants.REQ_PARAM_YCOORD;
 
 import java.io.IOException;
 import java.util.Map;
@@ -237,7 +241,7 @@ public abstract class ServletBase extends HttpServlet {
         // ... tussendoor
         if (totaalAantalPaginas > 6) {
             // alleen als aantal pagina's groter is dan 5
-            if (currentOffset - eerste > 3 * this.itemsPerPage) {
+            if ((currentOffset - eerste) > (3 * this.itemsPerPage)) {
                 // alleen als er meer dan 3 paginas tussen eerste en huidige
                 // zitten
                 sb.append("<li>...</li>");
@@ -252,7 +256,7 @@ public abstract class ServletBase extends HttpServlet {
             start = 0;
         }
 
-        if (currentOffset >= (totaalAantalPaginas - 3) * this.itemsPerPage) {
+        if (currentOffset >= ((totaalAantalPaginas - 3) * this.itemsPerPage)) {
             // maximaal bij totaal aantal minus 5 eindigen
             start = (totaalAantalPaginas * this.itemsPerPage)
                     - (maxPages * this.itemsPerPage);
@@ -266,12 +270,12 @@ public abstract class ServletBase extends HttpServlet {
         // pagina's
         int offset = 0;
         for (int i = 0; i < maxPages; i++) {
-            offset = start + i * this.itemsPerPage;
+            offset = start + (i * this.itemsPerPage);
             if (currentOffset == offset) {
                 LOGGER.debug("pagina " + (i + 1)
                         + " is de huidige pagina en heeft offset " + offset);
                 sb.append("<li class=\"active\"><strong>")
-                        .append(offset / this.itemsPerPage + 1)
+                        .append((offset / this.itemsPerPage) + 1)
                         .append("</strong></li>");
             } else {
                 if (!((eerste == offset) || (laatste == offset))) {
@@ -285,7 +289,7 @@ public abstract class ServletBase extends HttpServlet {
 
         // ... tussendoor
         if (totaalAantalPaginas > 6) {
-            if (laatste - currentOffset > 3 * this.itemsPerPage) {
+            if ((laatste - currentOffset) > (3 * this.itemsPerPage)) {
                 // alleen als er meer dan 3 paginas tussen laatste en huidige
                 // zitten
                 sb.append("<li>...</li>");
@@ -321,7 +325,7 @@ public abstract class ServletBase extends HttpServlet {
      */
     private String maakPaginaItem(String addParam, int plusPag) {
         return "<li><a href=\"" + addParam + plusPag + "\">"
-                + (plusPag / this.itemsPerPage + 1) + "</a></li>";
+                + ((plusPag / this.itemsPerPage) + 1) + "</a></li>";
     }
 
     /**
@@ -424,5 +428,34 @@ public abstract class ServletBase extends HttpServlet {
     protected void doTrace(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         throw new ServletException("TRACE is geen ondersteunde functie.");
+    }
+
+    protected double[] parseLocation(HttpServletRequest request)
+            throws ServletException {
+        try {
+            // request params uitlezen voor het zoeken
+            final double xcoord = Double.valueOf(request
+                    .getParameter(REQ_PARAM_XCOORD.code));
+            final double ycoord = Double.valueOf(request
+                    .getParameter(REQ_PARAM_YCOORD.code));
+            final double straal = Double
+                    .valueOf((null == request
+                            .getParameter(REQ_PARAM_STRAAL.code) ? OPENLS_ZOOMSCALE_STANDAARD
+                            .toString() : request
+                            .getParameter(REQ_PARAM_STRAAL.code)));
+            LOGGER.debug("request params:" + xcoord + ":" + ycoord + " straal:"
+                    + straal);
+            return new double[] { xcoord, ycoord, straal };
+        } catch (final NullPointerException e) {
+            LOGGER.error(
+                    "Een van de vereiste parameters werd niet in het request gevonden.",
+                    e);
+            throw new ServletException(e);
+        } catch (final NumberFormatException e) {
+            LOGGER.error(
+                    "Een van de vereiste parameters kon niet geparsed worden als Double.",
+                    e);
+            throw new ServletException(e);
+        }
     }
 }
