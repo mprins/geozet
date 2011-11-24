@@ -4,7 +4,6 @@ import static nl.geozet.common.NumberConstants.OPENLS_ZOOMSCALE_GEMEENTE;
 import static nl.geozet.common.NumberConstants.OPENLS_ZOOMSCALE_PLAATS;
 import static nl.geozet.common.NumberConstants.OPENLS_ZOOMSCALE_PROVINCIE;
 import static nl.geozet.common.NumberConstants.OPENLS_ZOOMSCALE_STANDAARD;
-import static nl.geozet.common.StringConstants.FILTER_CATEGORIE_NAAM;
 import static nl.geozet.common.StringConstants.OPENLS_REQ_PARAM_REQUEST;
 import static nl.geozet.common.StringConstants.OPENLS_REQ_PARAM_SEARCH;
 import static nl.geozet.common.StringConstants.OPENLS_REQ_VALUE_GEOCODE;
@@ -40,7 +39,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import nl.geozet.common.DataCategorieen;
 import nl.geozet.common.HttpWrappedRequest;
 import nl.geozet.common.ServletBase;
 import nl.geozet.common.StringConstants;
@@ -62,7 +60,7 @@ import org.apache.log4j.Logger;
 /**
  * OpenLSServlet is een OLS client voor de Geozet applicatie. In het geval een
  * zoekactie een locatie oplevert wordt het request gelijk doorgestuurd naar de
- * {@link nl.geozet.wfs.WFSClientServlet WFSClientServlet}
+ * {@link nl.eleni.gcc.vpziek.servlet.WFSClientServlet WFSClientServlet}
  * 
  * @author strampel@atlis.nl
  * @author prinsmc@minlnv.nl
@@ -190,8 +188,11 @@ public class OpenLSServlet extends ServletBase {
                                     .toString() : straal });
             extraParams.put(REQ_PARAM_GEVONDEN.code,
                     new String[] { addr.getAddressString() });
-            extraParams.put(FILTER_CATEGORIE_NAAM.code,
-                    DataCategorieen.keysAsArray());
+
+            // TODO doorgeven filter
+            // extraParams.put(FILTER_CATEGORIE_NAAM.code,
+            // DataCategorieen.keysAsArray());
+
             // doorgeven aan bekendmakingen servlet voor zoekactie
             final HttpServletRequest wrappedRequest = new HttpWrappedRequest(
                     request, extraParams);
@@ -314,7 +315,7 @@ public class OpenLSServlet extends ServletBase {
 
         // header inhaken
         final RequestDispatcher header = this.getServletContext()
-                .getRequestDispatcher("/WEB-INF/locatielijst_begin.jsp");
+                .getRequestDispatcher("/WEB-INF/jsp/locatielijst_begin.jsp");
         if (header != null) {
             header.include(request, response);
         }
@@ -414,7 +415,7 @@ public class OpenLSServlet extends ServletBase {
         out.flush();
         // footer inhaken
         final RequestDispatcher footer = this.getServletContext()
-                .getRequestDispatcher("/WEB-INF/locatielijst_einde.jsp");
+                .getRequestDispatcher("/WEB-INF/jsp/locatielijst_einde.jsp");
         if (footer != null) {
             footer.include(request, response);
         }

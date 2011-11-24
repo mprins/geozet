@@ -34,18 +34,18 @@ h4 { font-weight: normal; margin: 0; padding: 0;}
 	dl.geozetResults dt { width: auto; margin: 0; }
 	dl.geozetResults dt,
 	dl.geozetResults dd { border: 0; }
-	
+
 	#geozetAsideCore h3 { color: #000; }
 
-	
-	
+
+
 /*  Algemene classes
 -------------------------------------------- */
 .hidden {display:none;}
 
 
 /*  Hoofdindeling site
-    Layout 
+    Layout
     eerst CORE element, dan ENHANCED. Dus geen progressive enhancement maar echt twee versies
     Voordat de body is geplaatst weten we al of de bezoeker javascript aan heeft staan, voorkomt verspringen van content
 	De Geozetviewer gebruikt unieke containers met prefix geozet zodat integratie voorspoedig zal gaan
@@ -54,22 +54,22 @@ h4 { font-weight: normal; margin: 0; padding: 0;}
 
 
 #geozetContent { width: 960px; }
-	/* de oplossing voor het maximaliseren is afhankelijk van website klant, (de class geozetMax is alleen mogelijk door javascript dus wdat weten we ieg al), die bepaalt hoe we de bouwblokken gaan herzien bij maximaliseren, wellicht ook nog eventuele wrappers maximaliseren dus */	
+	/* de oplossing voor het maximaliseren is afhankelijk van website klant, (de class geozetMax is alleen mogelijk door javascript dus wdat weten we ieg al), die bepaalt hoe we de bouwblokken gaan herzien bij maximaliseren, wellicht ook nog eventuele wrappers maximaliseren dus */
 	body.geozetMax #geozetContent { position: relative;  }
-	body.geozetMax #geozetArticle { margin: 0 0 0 255px; float: none; } 
-	body.geozetMax #geozetAside { position: absolute; left: 0; top: 0; } 
+	body.geozetMax #geozetArticle { margin: 0 0 0 255px; float: none; }
+	body.geozetMax #geozetAside { position: absolute; left: 0; top: 0; }
 	/* indien men geen linkerkolom wil tonen */
 		body.geozetMax #geozetContent.mapOnly { position: relative;  }
 		body.geozetMax #geozetContent.mapOnly #geozetAside { display: none; }
 		body.geozetMax #geozetContent.mapOnly #geozetArticle { margin: 0; float: none; }
-	
-	
+
+
 	#geozetContent.geozetMapOnly #geozetAside { display: none; }
 	#geozetContent.geozetMapOnly #geozetArticle { width: 960px; float: none;  }
 	#geozetContent.geozetMapOnly #geozetMap { width: 950px; }
-		body.geozetMax #geozetContent.geozetMapOnly #geozetArticle { margin: 0; float: none; } 
-	
-	
+		body.geozetMax #geozetContent.geozetMapOnly #geozetArticle { margin: 0; float: none; }
+
+
 	#geozetArticle { float: right; width: 705px; }
 		/* bezoekers met javascript gaan naar de enhanced versie, zonder naar de core */
 		html.js #geozetEnhanced,
@@ -126,15 +126,15 @@ h4 { font-weight: normal; margin: 0; padding: 0;}
 
 /*  KAART
     CORE versie (drempelvrij)
-	
+
 -------------------------------------------- */
 
 #geozetCore { width: 440px; }
 #geozetCore .title-main { font-size:1.6em; color: #ff8a00; margin: 0 0 8px 0; padding: 4px 0; color: #e67c00; font-family: Arial,Helvetica,sans-serif; border: 0; }
 
 #geozetContent button	{
-	background: url(img/button.gif) right top no-repeat;	
-	padding: 0 25px 0 0; text-align: right; display: block;font-size: .95em; width: 100%; height: 21px; line-height: 21px; cursor: pointer;font-weight: bold; }	
+	background: url(img/button.gif) right top no-repeat;
+	padding: 0 25px 0 0; text-align: right; display: block;font-size: .95em; width: 100%; height: 21px; line-height: 21px; cursor: pointer;font-weight: bold; }
 	/* BUTTON KOMT VAN ICTU */
 #geozetContent button:hover, #geozetCore button:focus { background-position: right bottom; }
 #geozetCore p.button { margin-bottom: 0; }
@@ -198,6 +198,16 @@ dl.geozetResults dd { color:#e67c00; font-weight:bold; float: none; width: auto;
 #geozetResultsList a:hover { color: #000; background: url(img/link-hover.gif) no-repeat right -4px; }
 #geozetResultsList span { display: block; color: #E67C00; }
 
+#geozetResultsListInside { margin: 4px 0 20px 0; padding: 0; line-height: 1.3em; }
+#geozetResultsListInside li { border-bottom:1px solid #e5e5e5; padding: 2px 0; }
+#geozetResultsListInside a,
+#geozetResultsListInside a.extern { color:#000;display:block;padding:0 15px 0 0;text-decoration:none; }
+#geozetResultsListInside a { background: url(img/link.gif) no-repeat right -4px; }
+#geozetResultsListInside a:hover { color: #000; background: url(img/link-hover.gif) no-repeat right -4px; }
+#geozetResultsListInside span { display: block; color: #E67C00; }
+
+
+
 legend.last-title { border-top: 1px solid #fff; }
 
 
@@ -208,9 +218,9 @@ legend.last-title { border-top: 1px solid #fff; }
 	#geozetContent .geozetPaging li:first-child,
 	#geozetContent .geozetPaging li.first { border: none;	}
 
-#geozetContent .geozetPaging a { text-decoration: none; color: #000; }	
+#geozetContent .geozetPaging a { text-decoration: none; color: #000; }
 	.geozetPaging a:hover, .geozetPaging a:focus	{text-decoration: underline; }
-.geozetPaging .active, 
+.geozetPaging .active,
 .geozetPaging .active a { font-weight: bold; color: #e67c00; }
 .geozetPaging .active a:hover, .geozetPaging .active a:focus { text-decoration: none;cursor: default;}
 
@@ -218,13 +228,13 @@ legend.last-title { border-top: 1px solid #fff; }
 	.geozetPaging .next a   {	padding-right: 17px; font-weight: bold; background: url(img/nav-paging.gif) right -135px no-repeat; }
 .geozetPaging .prev { padding-left: 0; }
 	.geozetPaging .prev a    {	padding-left: 17px; font-weight: bold; background: url(img/nav-paging.gif) left 1px no-repeat; }
-	
+
 #geozetResultsList + .geozetPaging  {	border-bottom:0; border-top:3px solid #ff8a00; margin-bottom:15px; }
-	
+
 /* LIJST KENMERKEN OP DETAILPAGINA */
 #geozetCore ul.geozetDetails { padding-left:25px; margin-bottom: 15px; }
 #geozetCore ul.geozetDetails li { list-style-image:url(img/bullet.png); }
-	
+
 
 
 
@@ -271,7 +281,7 @@ a.geozetCSS { position: absolute; top: -100px; left: 0; }
 	#geozetEnhancedSearch p.geozetError { margin: 0 0 4px 0; }
 	#geozetEnhancedSearch p.btn { display: block; margin: 0; }
 
-	
+
 /* LOCATIE NIET GEVONDEN */
 #locatie-enhanced.error { border-color: #ff2800}
 h3.geozetSuggestions { font-size:1em; color: #000; margin-bottom: 5px; }
@@ -301,16 +311,16 @@ fieldset#geozetFilter { padding: 0; }
 	a.geozetInfo { background: url(img/bg-sprite-trans.png) no-repeat -386px -134px; display: block; float: left; width: 12px; height: 12px; margin: 2px 0 0 5px;text-indent:-99em; }
 	a.geozetInfo:hover { background-position: -398px -134px; }
 	html.js p.geozetInfo { position: absolute; z-index: 1000; display: none; width: 225px; background-color: #6D7F97; color: #fff; padding: 8px; margin: 4px; }
-	
+
 #geozetContent .geozetFilter { padding: 0; background-color: #fff; }
 #geozetContent .geozetFilter li { border-bottom: 1px solid #ff8a00; padding: 2px 24px 2px 2px; position: relative; background-image: url('img/icons-map.png'); background-repeat: no-repeat; }
 #geozetContent .geozetFilter li label{  display: block; padding: 4px 0 4px 24px;   }
 #geozetContent .geozetFilter li input { position: absolute; right: 0; top: 6px; margin: 0;  }
 
 
-	
-	
-	
+
+
+
 
 
 
@@ -351,7 +361,7 @@ fieldset#geozetFilter { padding: 0; }
 	#geozetMap #geozetPanZoomBar ul li.zoom-plus a:focus { background-position: -403px -265px;}
 	#geozetMap #geozetPanZoomBar ul li.zoom-min a { background-position: -461px -421px; width: 20px; height: 26px; }
 	#geozetMap #geozetPanZoomBar ul li.zoom-min a:focus { background-position: -403px -421px; }
-	
+
 #geozetMap #geozetPanZoomBar .x-slider-vert { background: url('img/bg-sprite-trans.png') no-repeat -461px -293px; z-index:900; left: 13px; top: 80px; width: 20px; height: 118px; position: absolute; }
 #geozetMap #geozetPanZoomBar .x-slider-thumb { background: url('img/bg-sprite-trans.png') no-repeat -461px -452px; width: 20px; height: 15px; position: absolute;  }
 	#geozetMap #geozetPanZoomBar .x-slider-thumb-drag { background-position: -403px -452px; }
@@ -368,7 +378,7 @@ fieldset#geozetFilter { padding: 0; }
 
 
 /* KAART VERGROTEN/VERKLEINEN */
-#geozetMap #toggleMapSize { background:url('img/bg-sprite-trans.png') no-repeat -406px -42px; right:-22px;top:-1px;display:block;height:21px;position:absolute;width:21px;} 
+#geozetMap #toggleMapSize { background:url('img/bg-sprite-trans.png') no-repeat -406px -42px; right:-22px;top:-1px;display:block;height:21px;position:absolute;width:21px;}
 #geozetMap #toggleMapSize:hover,
 #geozetMap #toggleMapSize:focus  { background-position: -406px -63px; }
 #geozetMap #toggleMapSize.max { background-position: -386px -42px; right: -1px; }
@@ -409,7 +419,7 @@ ul#geozetFlatList { margin-bottom: 20px; }
 	#geozetPopup .extern a { margin-top: 7px; }
 
 #geozetPopup .close,
-#geozetPopup .close:focus, 
+#geozetPopup .close:focus,
 #geozetContent a.geozetClose { display:block;width:21px;height:21px;position:absolute;right:6px;top:3px;background: url('img/bg-sprite-trans.png') no-repeat -386px -105px; text-indent:-999em;}
 	#geozetPopup .close:hover,
 	#geozetContent a.geozetClose:hover,
@@ -454,17 +464,17 @@ ul#geozetFlatList { margin-bottom: 20px; }
 	#geozetPopover h3 { font-family: arial; font-size: 1.25em; line-height: 1em; color: #e67c00; margin: 0; font-weight: normal; display: block; white-space: nowrap; }
 	#geozetPopover strong { white-space: nowrap; font-weight: normal; font-size: 0.9em; }
 	#geozetPopover strong em { text-transform:capitalize; font-style: normal; font-weight: bold;}
-	
+
 	#geozetPopover span { left: 0px; top: 4px; width: 21px; height: 21px; display: block; position: absolute; background: #fff url('img/icons-map.png') no-repeat 0 0; }
-	#geozetPopover span.consument { background-position: 0 -40px;  } 
-	#geozetPopover span.maatschappij { background-position: 0 -120px;  } 
-	#geozetPopover span.natuur { background-position: 0 -200px; } 
+	#geozetPopover span.consument { background-position: 0 -40px;  }
+	#geozetPopover span.maatschappij { background-position: 0 -120px;  }
+	#geozetPopover span.natuur { background-position: 0 -200px; }
 	#geozetPopover span.overheid { background-position: 0 -280px; }
-	#geozetPopover span.rechtspraak { background-position: 0 -360px;} 
-	#geozetPopover span.verkeer { background-position: 0 -440px; } 
+	#geozetPopover span.rechtspraak { background-position: 0 -360px;}
+	#geozetPopover span.verkeer { background-position: 0 -440px; }
 	#geozetPopover span.wonen { background-position: 0 -520px; }
 	#geozetPopover span.cluster { background-position: 0 -600px;  }
-	#geozetPopover span.gezin { background-position: 0 -680px;  } 
+	#geozetPopover span.gezin { background-position: 0 -680px;  }
 
 	.geozetFilter li.consument { background-position: 0 -38px; }
 	.geozetFilter li.maatschappij { background-position: 0 -118px; }
@@ -482,7 +492,7 @@ ul#geozetFlatList { margin-bottom: 20px; }
 #geozetMap a img { border: 0; }
 		#geozetMap a { text-indent: 0; text-align: center; color: #fff; text-decoration: none; line-height: 21px; width: 21px; }
 		#geozetMap a:visited, #geozetMap a:hover { color: #fff; }
-		
+
 				#geozetMap a.cluster-1 span { position: absolute; display: block; top: 0px; left: 5px; }
 				#geozetMap a.cluster-2 { width: 24px; height: 24px; line-height: 24px;  }
 				#geozetMap a.cluster-2 span { position: absolute; display: block; top: 0px; left: 2px; }
@@ -515,18 +525,19 @@ ul#geozetFlatList { margin-bottom: 20px; }
 
 
 /* copyright map */
+#copy {text-align: right; font-style: italic;}
 
 #geozetSource { position: absolute; left: 5px; bottom: 5px; }
 
 /* NIET GELADEN TILES */
 
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 
 /*  CLEARFIX
     Clearing van containers met floating childs

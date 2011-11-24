@@ -5,9 +5,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import nl.eleni.gcc.vpziek.common.ColourStyleEnum;
+
 /**
- * De enum StringConstants bevat alle string constanten voor de GEOZET viewer
- * applicatie.
+ * De enum StringConstants bevat alle string constanten voor de applicatie.
  * 
  * @author prinsmc@minlnv.nl
  * @author strampel@atlis.nl
@@ -44,6 +45,10 @@ public enum StringConstants {
     REQ_PARAM_EXPLICITUSEFILTER("usefilter"),
     /** request param naam voor bounding box. */
     REQ_PARAM_BBOX("bbox"),
+    /** request param naam voor font size. */
+    REQ_PARAM_FONTSIZE("fsize"),
+    /** request param naam voor kleurenschema. */
+    REQ_PARAM_COLORSCHEME("cscheme"),
     /** request param naam voor response format. */
     REQ_PARAM_RESPONSE_FORMAT("format"),
 
@@ -94,6 +99,8 @@ public enum StringConstants {
 
     /** naam van de WFS feature klasse. */
     CONFIG_PARAM_WFS_TYPENAME("typename"),
+    /** naam van de WFS feature klasse. */
+    CONFIG_PARAM_WFS_TYPENAME_2("typename_two"),
     /** param naam voor items op een pagina. */
     CONFIG_PARAM_PAGINALENGTE("paginalengte"),
     /** param naam voor core-resources. */
@@ -110,12 +117,34 @@ public enum StringConstants {
     /** param naam voor de locatie servlet mapping. */
     CONFIG_PARAM_GEOZETSERVLET("geozet_url-pattern"),
     /**
-     * Naam van feature attribuut met de catagorie waarde, niet configureerbaar.
+     * Naam van feature attribuut met de categorie waarde, niet configureerbaar.
      */
     FILTER_CATEGORIE_NAAM("categorie"),
+    /**
+     * Naam van feature attribuut met de besmetting waarde ("ziekte"), niet
+     * configureerbaar.
+     */
+    FILTER_BESMETTING_NAAM("besmetting"),
 
     /** naam van de UserData attribuut voor afstand. */
     AFSTAND_NAAM("afstand"),
+
+    /**
+     * @see nl.eleni.gcc.vpziek.common.ColourStyleEnum#KL
+     */
+    COLOURSCHEME_COLOUR(ColourStyleEnum.KL.toString()),
+    /** @see nl.eleni.gcc.vpziek.common.ColourStyleEnum#ZW */
+    COLOURSCHEME_BLACKWHITE(ColourStyleEnum.ZW.toString()),
+    /** @see nl.eleni.gcc.vpziek.common.ColourStyleEnum#GR */
+    COLOURSCHEME_GREYSCALE(ColourStyleEnum.GR.toString()),
+    /** @see nl.eleni.gcc.vpziek.common.ColourStyleEnum#MON */
+    COLOURSCHEME_MONO(ColourStyleEnum.MON.toString()),
+    /**
+     * default kleurenschema.
+     * 
+     * @see #COLOURSCHEME_COLOUR
+     */
+    DEFAULT_COLORSCHEME(COLOURSCHEME_COLOUR.toString()),
 
     /* begin datamodel mapping */
     /**
@@ -123,7 +152,7 @@ public enum StringConstants {
      * 
      * @see #featureAttribuutNamen
      */
-    FEATURE_ATTR_NAAM_TITEL("titel"),
+    FEATURE_ATTR_NAAM_TITEL("besmetting"),
     /**
      * naam van de feature attribuut voor beschrijving.
      * 
@@ -131,17 +160,29 @@ public enum StringConstants {
      */
     FEATURE_ATTR_NAAM_DESCRIPTION("beschrijving"),
     /**
+     * naam van de feature attribuut voor beschrijving.
+     * 
+     * @see #featureAttribuutNamen
+     */
+    FEATURE_ATTR_NAAM_NAAM("naam"),
+    /**
      * naam van de feature attribuut voor onderwerp.
      * 
      * @see #featureAttribuutNamen
      */
-    FEATURE_ATTR_NAAM_ONDERWERP("onderwerp"),
+    FEATURE_ATTR_NAAM_ONDERWERP("gebiedstype"),
     /**
      * naam van de feature attribuut voor url.
      * 
      * @see #featureAttribuutNamen
      */
     FEATURE_ATTR_NAAM_URL("url"),
+    /**
+     * naam van de feature attribuut voor besmetting.
+     * 
+     * @see #featureAttribuutNamen
+     */
+    FEATURE_ATTR_NAAM_BESMETTING("besmetting"),
     /**
      * naam van de feature attribuut voor plaats.
      * 
@@ -159,7 +200,13 @@ public enum StringConstants {
      * 
      * @see #featureAttribuutNamen
      */
-    FEATURE_ATTR_NAAM_DATUM("datum"),
+    FEATURE_ATTR_NAAM_DATUM("begindatum"),
+    /**
+     * naam van de feature attribuut voor eind datum.
+     * 
+     * @see #featureAttribuutNamen
+     */
+    FEATURE_ATTR_NAAM_EINDDATUM("einddatum"),
     /**
      * naam van de feature attribuut voor overheid.
      * 
@@ -171,7 +218,7 @@ public enum StringConstants {
      * 
      * @see #featureAttribuutNamen
      */
-    FEATURE_ATTR_NAAM_CATEGORIE("categorie"),
+    FEATURE_ATTR_NAAM_CATEGORIE("beperking"),
     /**
      * naam van de feature attribuut voor postcodehuisnummer.
      * 

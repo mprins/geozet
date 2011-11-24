@@ -21,7 +21,7 @@ public enum NumberConstants {
     /** straal voor een provincie zoekresultaat, waarde in meter. */
     OPENLS_ZOOMSCALE_PROVINCIE(50000),
     /** straal voor een default zoekresultaat, waarde in meter. */
-    OPENLS_ZOOMSCALE_STANDAARD(1500),
+    OPENLS_ZOOMSCALE_STANDAARD(50000),
     /**
      * default relevante oppervlakte factor.
      * 
@@ -31,7 +31,9 @@ public enum NumberConstants {
     /** default aantal features voor een WFS request. */
     DEFAULT_MAX_FEATURES(500),
     /** default aantal items per pagina, 10. */
-    DEFAULT_ITEMS_PER_PAGINA(10);
+    DEFAULT_ITEMS_PER_PAGINA(10),
+    /** default font size, 12. */
+    DEFAULT_FONT_SIZE(12);
 
     /** de waarde van dit object. */
     private final Number number;

@@ -10,7 +10,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" lang="nl">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Zoek in lokale bekendmakingen</title>
+<title><%=RESOURCES.getString("KEY_TITEL")%></title>
 
 <%-- jsp:include page="WEB-INF/ictu-head.jsp" / --%>
 
@@ -34,9 +34,11 @@
 
 <%-- jsp:include page="WEB-INF/ictu-header.jsp" / --%>
 
-<%@ include file="WEB-INF/corecheck.jsp"%>
+<%@ include file="WEB-INF/jsp/corecheck.jsp"%>
 
 <div id="geozetContent" class="start <%=coreOnly(request)%>">
+
+<p>Op dit moment is er alleen een core variant beschikbaar, <a href="index.jsp?coreonly=true" >klik hier</a> of zet javascript uit in je browser.</p>
 
 		<div id="geozetArticle">
 
@@ -46,15 +48,15 @@
 
 <%=RESOURCES.getString("KEY_INTRO_TITEL")%>
 <%=RESOURCES.getString("KEY_INTRO_TEKST")%>
-                	
-<jsp:include page="WEB-INF/zoekformulier.jsp" />
+
+<jsp:include page="WEB-INF/jsp/zoekformulier.jsp" />
 
 <%=RESOURCES.getString("KEY_INTRO_BANNER")%>
 
 				<%-- EIND ZOEKFORMULIER --%>
 
 			</div>
-			
+
 			<div id="geozetEnhanced" class="hidden">
 				<div id="geozetMap"></div>
 			</div>
@@ -66,9 +68,9 @@
 <%-- jsp:include page="WEB-INF/ictu-zoeken.jsp" / --%>
 
 			<div id="geozetAsideCore"></div>
-			
+
 			<div id="geozetAsideEnhanced" class="hidden">
-			
+
 			</div>
 
 		</div>
@@ -77,7 +79,7 @@
 
 <%-- jsp:include page="WEB-INF/ictu-footer.jsp" / --%>
 
-<jsp:include page="WEB-INF/javascript.jsp" />
+<jsp:include page="WEB-INF/jsp/javascript.jsp" />
 
 </body>
 </html>
