@@ -24,10 +24,8 @@ public class SpatialUtilTest {
     @SuppressWarnings({ "javadoc", "deprecation" })
     @Test
     public final void testCalcBBOX() {
-
-        final double[] expected = { (XCOORD - (STRAAL / 2)),
-                (YCOORD - (STRAAL / 2)), (XCOORD + (STRAAL / 2)),
-                (YCOORD + (STRAAL / 2)) };
+        final double[] expected = { (XCOORD - (STRAAL)), (YCOORD - (STRAAL)),
+                (XCOORD + (STRAAL)), (YCOORD + (STRAAL)) };
         final double[] actual = SpatialUtil.calcBBOX(XCOORD, YCOORD, STRAAL);
         assertEquals(expected[0], actual[0], .1);
         assertEquals(expected[1], actual[1], .1);
@@ -40,9 +38,9 @@ public class SpatialUtilTest {
      */
     @Test
     public final void testCalcRDBBOX() {
-        final GeneralEnvelope expected = new GeneralEnvelope(
-                new double[] { (XCOORD - (STRAAL / 2)), (YCOORD - (STRAAL / 2)) },
-                new double[] { (XCOORD + (STRAAL / 2)), (YCOORD + (STRAAL / 2)) });
+        final GeneralEnvelope expected = new GeneralEnvelope(new double[] {
+                (XCOORD - (STRAAL)), (YCOORD - (STRAAL)) }, new double[] {
+                (XCOORD + (STRAAL)), (YCOORD + (STRAAL)) });
 
         final BoundingBox actual = SpatialUtil.calcRDBBOX(XCOORD, YCOORD,
                 STRAAL);
