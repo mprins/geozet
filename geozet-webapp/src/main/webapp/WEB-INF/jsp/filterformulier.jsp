@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="nl.geozet.common.CoreResources, nl.geozet.common.StringConstants,
-		nl.geozet.common.NumberConstants, nl.eleni.gcc.vpziek.beans.ActieveZiektenBean,
-		java.util.Arrays, java.util.Collections, java.util.List;" %>
+	import="nl.geozet.common.CoreResources,nl.geozet.common.StringConstants,nl.geozet.common.NumberConstants,nl.eleni.gcc.vpziek.beans.ActieveZiektenBean,java.util.Arrays,java.util.Collections,java.util.List,java.util.Date,java.util.Locale,java.text.MessageFormat;"%>
 
 
 <%-- Deze component is het filterformulier --%>
@@ -45,7 +43,7 @@
             .getParameter(StringConstants.REQ_PARAM_FONTSIZE.code)
             : NumberConstants.DEFAULT_FONT_SIZE.toString();
 
-	// kleuren schema
+    // kleuren schema
     String selectedColor = (request
             .getParameter(StringConstants.REQ_PARAM_COLORSCHEME.code) != null) ? request
             .getParameter(StringConstants.REQ_PARAM_COLORSCHEME.code)
@@ -56,14 +54,15 @@
             .getParameter(StringConstants.REQ_PARAM_EXPLICITUSEFILTER.code);
     String[] chkBoxesChecked = request
             .getParameterValues(StringConstants.REQ_PARAM_FILTER.code);
-    List<String> elements = ((ActieveZiektenBean)application.getAttribute("actieveziekten")).getElements();
+    List<String> elements = ((ActieveZiektenBean) application
+            .getAttribute("actieveziekten")).getElements();
     List<String> checkedList = elements;
 
-     if (null != filterUsed && filterUsed.equalsIgnoreCase("true")) {
+    if (null != filterUsed && filterUsed.equalsIgnoreCase("true")) {
         // als REQ_PARAM_USEFILTER == true filter instellen volgen request params
-         checkedList = (chkBoxesChecked != null) ? Arrays
-                 .asList(chkBoxesChecked) : Collections.EMPTY_LIST;
-      }
+        checkedList = (chkBoxesChecked != null) ? Arrays
+                .asList(chkBoxesChecked) : Collections.EMPTY_LIST;
+    }
 
     // core only..
     String coreonly = (request
@@ -80,10 +79,10 @@
 			<%
 			    for (String cat : elements) {
 			%>
-			<li class="ziekte">
-				<input name="filter" value="<%=cat%>" type="checkbox" <%if (checkedList.contains(cat)) {%>	checked="checked" <%}%> id="geo-<%=cat.replace(" ","-")%>" />
-				<label for="geo-<%=cat.replace(" ","-")%>"><%=cat%></label>
-			</li>
+			<li class="ziekte"><input name="filter" value="<%=cat%>"
+				type="checkbox" <%if (checkedList.contains(cat)) {%>
+				checked="checked" <%}%> id="geo-<%=cat.replace(" ", "-")%>" /> <label
+				for="geo-<%=cat.replace(" ", "-")%>"><%=cat%></label></li>
 			<%
 			    }
 			%>
@@ -108,7 +107,8 @@
 	<fieldset>
 		<legend><%=RESOURCES.getString("KEY_FILTERFORM_LEGEND_STRAAL")%></legend>
 		<label for="<%=StringConstants.REQ_PARAM_STRAAL%>"><%=RESOURCES.getString("KEY_FILTERFORM_LABEL_STRAAL")%>
-			<select name="<%=StringConstants.REQ_PARAM_STRAAL%>" id="<%=StringConstants.REQ_PARAM_STRAAL%>">
+			<select name="<%=StringConstants.REQ_PARAM_STRAAL%>"
+			id="<%=StringConstants.REQ_PARAM_STRAAL%>">
 				<%-- TODO: evt. dynamisch maken op basis van de waarden in nl.geozet.common.NumberConstants --%>
 				<option value="300000" <%if (("300000").equals(selected)) {%>
 					selected="selected" <%}%>>300 km (heel Nederland)</option>
@@ -126,8 +126,7 @@
 					selected="selected" <%}%>>1,5 km</option>
 				<!-- option value="500" <%if (("500").equals(selected)) {%>
 					selected="selected" <%}%>>500 m</option -->
-			</select>
-		</label>
+		</select> </label>
 	</fieldset>
 
 	<%-- fontsize /kleuren schema--%>
@@ -135,30 +134,35 @@
 		<legend><%=RESOURCES.getString("KEY_FILTERFORM_LEGEND_OPMAAK")%></legend>
 		<p class="intro"><%=RESOURCES.getString("KEY_FILTERFORM_LEGEND_OPMAAK_INTRO")%></p>
 		<label for="<%=StringConstants.REQ_PARAM_FONTSIZE%>"><%=RESOURCES.getString("KEY_FILTERFORM_LABEL_FONT_SIZE")%>
-			<select name="<%=StringConstants.REQ_PARAM_FONTSIZE%>" id="<%=StringConstants.REQ_PARAM_FONTSIZE%>">
+			<select name="<%=StringConstants.REQ_PARAM_FONTSIZE%>"
+			id="<%=StringConstants.REQ_PARAM_FONTSIZE%>">
 				<option value="10" <%if (("10").equals(selectedFont)) {%>
-						selected="selected" <%}%>>10</option>
+					selected="selected" <%}%>>10</option>
 				<option value="12" <%if (("12").equals(selectedFont)) {%>
-						selected="selected" <%}%>>12</option>
+					selected="selected" <%}%>>12</option>
 				<option value="14" <%if (("14").equals(selectedFont)) {%>
-						selected="selected" <%}%>>14</option>
+					selected="selected" <%}%>>14</option>
 				<option value="16" <%if (("16").equals(selectedFont)) {%>
-						selected="selected" <%}%>>16</option>
-			</select>
-		</label>
-
-		<label for="<%=StringConstants.REQ_PARAM_COLORSCHEME%>"><%=RESOURCES.getString("KEY_FILTERFORM_LABEL_COL_SCHEME")%>
-			<select name="<%=StringConstants.REQ_PARAM_COLORSCHEME%>" id="<%=StringConstants.REQ_PARAM_COLORSCHEME%>">
-				<option value="<%=StringConstants.COLOURSCHEME_COLOUR.code%>" <%if ((StringConstants.COLOURSCHEME_COLOUR.code).equals(selectedColor)) {%>
+					selected="selected" <%}%>>16</option>
+		</select> </label> <label for="<%=StringConstants.REQ_PARAM_COLORSCHEME%>"><%=RESOURCES.getString("KEY_FILTERFORM_LABEL_COL_SCHEME")%>
+			<select name="<%=StringConstants.REQ_PARAM_COLORSCHEME%>"
+			id="<%=StringConstants.REQ_PARAM_COLORSCHEME%>">
+				<option value="<%=StringConstants.COLOURSCHEME_COLOUR.code%>"
+					<%if ((StringConstants.COLOURSCHEME_COLOUR.code)
+                    .equals(selectedColor)) {%>
 					selected="selected" <%}%>>kleur</option>
-				<option value="<%=StringConstants.COLOURSCHEME_MONO.code%>" <%if ((StringConstants.COLOURSCHEME_MONO.code).equals(selectedColor)) {%>
+				<option value="<%=StringConstants.COLOURSCHEME_MONO.code%>"
+					<%if ((StringConstants.COLOURSCHEME_MONO.code).equals(selectedColor)) {%>
 					selected="selected" <%}%>>één kleur</option>
-				<option value="<%=StringConstants.COLOURSCHEME_BLACKWHITE.code%>" <%if ((StringConstants.COLOURSCHEME_BLACKWHITE.code).equals(selectedColor)) {%>
+				<option value="<%=StringConstants.COLOURSCHEME_BLACKWHITE.code%>"
+					<%if ((StringConstants.COLOURSCHEME_BLACKWHITE.code)
+                    .equals(selectedColor)) {%>
 					selected="selected" <%}%>>zwart/wit</option>
-				<option value="<%=StringConstants.COLOURSCHEME_GREYSCALE.code%>" <%if ((StringConstants.COLOURSCHEME_GREYSCALE.code).equals(selectedColor)) {%>
+				<option value="<%=StringConstants.COLOURSCHEME_GREYSCALE.code%>"
+					<%if ((StringConstants.COLOURSCHEME_GREYSCALE.code)
+                    .equals(selectedColor)) {%>
 					selected="selected" <%}%>>grijstinten</option>
-			</select>
-		</label>
+		</select> </label>
 	</fieldset>
 
 	<p class="button">
@@ -183,3 +187,8 @@
 		</button>
 	</p>
 </form>
+<p class="">
+	<%=MessageFormat.format(
+                   RESOURCES.getString("KEY_FILTERFROM_LAATSTEOPVRAAG"),
+                   new Date())%>
+</p>

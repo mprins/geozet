@@ -17,6 +17,7 @@ import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -197,8 +198,10 @@ public class WMSClientServlet extends ServletBase {
                 && filterUsed.equalsIgnoreCase("true")) {
             LOGGER.debug("Er is expres gezocht met een leeg filter");
             // TODO wat nu ?? geen kaart?!
-            this.renderHTMLResults(request, response, null);
-            return;
+            // this.renderHTMLResults(request, response, null);
+            // return;
+            // toch een kaart
+            actieveZiektenamen = Collections.emptyList();
         } else if (null != fString) {
             LOGGER.debug("Er wordt gezocht met een filter");
             actieveZiektenamen = Arrays.asList(fString);
@@ -271,68 +274,79 @@ public class WMSClientServlet extends ServletBase {
             IOException {
 
         Color drawCol = Color.MAGENTA;
-        final GetMapRequest map = this.fgWMS.createGetMapRequest();
-        map.addLayer(layers[0], StyledLayerDescriptorUtil.SLD_STYLE_NAME);
-        map.addLayer(layers[1], StyledLayerDescriptorUtil.SLD_STYLE_NAME);
-        map.setFormat("image/png32");
-        map.setDimensions(MAP_DIMENSION, MAP_DIMENSION);
-        map.setTransparent(true);
-        map.setSRS("EPSG:28992");
-        map.setBBox(bbox);
-        map.setExceptions("application/vnd.ogc.se_inimage");
-        try {
-            StyledLayerDescriptor sld;
-            switch (style) {
-            case MON:
-                sld = StyledLayerDescriptorUtil.createDistinctColourStyle(
-                        layers, requestedFontSize, actieveZiektenamen);
-                break;
-            case GR:
-                sld = StyledLayerDescriptorUtil.createGreyscaleStyle(layers,
-                        requestedFontSize, actieveZiektenamen);
-                drawCol = Color.BLACK;
-                break;
-            case ZW:
-                sld = StyledLayerDescriptorUtil.createBWStyle(layers,
-                        requestedFontSize, actieveZiektenamen);
-                drawCol = Color.BLACK;
-                break;
-            case KL:
-                // doorvallen, KL is de default
-            default:
-                sld = StyledLayerDescriptorUtil.createFullColourStyle(layers,
-                        requestedFontSize, actieveZiektenamen);
+        BufferedImage image = new BufferedImage(MAP_DIMENSION, MAP_DIMENSION,
+                BufferedImage.TYPE_INT_ARGB);
+        if (!actieveZiektenamen.isEmpty()) {
+            // wms request doen
+            final GetMapRequest map = this.fgWMS.createGetMapRequest();
+            map.addLayer(layers[0], StyledLayerDescriptorUtil.SLD_STYLE_NAME);
+            map.addLayer(layers[1], StyledLayerDescriptorUtil.SLD_STYLE_NAME);
+            map.setFormat("image/png32");
+            map.setDimensions(MAP_DIMENSION, MAP_DIMENSION);
+            map.setTransparent(true);
+            map.setSRS("EPSG:28992");
+            map.setBBox(bbox);
+            map.setExceptions("application/vnd.ogc.se_inimage");
+            try {
+                StyledLayerDescriptor sld;
+                switch (style) {
+                case MON:
+                    sld = StyledLayerDescriptorUtil.createDistinctColourStyle(
+                            layers, requestedFontSize, actieveZiektenamen);
+                    break;
+                case GR:
+                    sld = StyledLayerDescriptorUtil.createGreyscaleStyle(
+                            layers, requestedFontSize, actieveZiektenamen);
+                    drawCol = Color.BLACK;
+                    break;
+                case ZW:
+                    sld = StyledLayerDescriptorUtil.createBWStyle(layers,
+                            requestedFontSize, actieveZiektenamen);
+                    drawCol = Color.BLACK;
+                    break;
+                case KL:
+                    // doorvallen, KL is de default
+                default:
+                    sld = StyledLayerDescriptorUtil.createFullColourStyle(
+                            layers, requestedFontSize, actieveZiektenamen);
+                }
+                final SLDTransformer trans = new SLDTransformer();
+                /*
+                 * vanwege een bug in arcgis server de xml document prolog
+                 * verwijderen van de sld
+                 */
+                trans.setOmitXMLDeclaration(true);
+                final String sldBody = trans.transform(sld);
+                LOGGER.debug("De volgende SLD_BODY wordt verstuurd: " + sldBody);
+                map.setProperty(GetMapRequest.SLD_BODY,
+                        encodeURIComponent(sldBody));
+            } catch (final TransformerException e) {
+                LOGGER.error(
+                        "Er is een fout opgetreden tijdens de transformatie van het gegenereerde SLD document.",
+                        e);
             }
-            final SLDTransformer trans = new SLDTransformer();
-            /*
-             * vanwege een bug in arcgis server de xml document prolog
-             * verwijderen van de sld
-             */
-            trans.setOmitXMLDeclaration(true);
-            final String sldBody = trans.transform(sld);
-            LOGGER.debug("De volgende SLD_BODY wordt verstuurd: " + sldBody);
-            map.setProperty(GetMapRequest.SLD_BODY, encodeURIComponent(sldBody));
-        } catch (final TransformerException e) {
-            LOGGER.error(
-                    "Er is een fout opgetreden tijdens de transformatie van het gegenereerde SLD document.",
-                    e);
-        }
-        map.setBGColour("0xffffff");
-        LOGGER.debug("Voorgrond WMS url is: " + map.getFinalURL());
+            map.setBGColour("0xffffff");
+            LOGGER.debug("Voorgrond WMS url is: " + map.getFinalURL());
 
-        // thema/voorgrond ophalen
-        final GetMapResponse response = this.fgWMS.issueRequest(map);
-        final BufferedImage image = ImageIO.read(response.getInputStream());
-        if (LOGGER.isDebugEnabled()) {
-            // voorgrond plaatje bewaren in debug modus
-            final File temp = File.createTempFile("fgwms", ".png", new File(
-                    this.getServletContext().getRealPath(MAP_CACHE_DIR)));
-            temp.deleteOnExit();
-            ImageIO.write(image, "png", temp);
+            // thema/voorgrond ophalen
+            final GetMapResponse response = this.fgWMS.issueRequest(map);
+            image = ImageIO.read(response.getInputStream());
+            if (LOGGER.isDebugEnabled()) {
+                // voorgrond plaatje bewaren in debug modus
+                final File temp = File.createTempFile(
+                        "fgwms",
+                        ".png",
+                        new File(this.getServletContext().getRealPath(
+                                MAP_CACHE_DIR)));
+                temp.deleteOnExit();
+                ImageIO.write(image, "png", temp);
+            }
+
+        } else {
+            // geen wms request doen
         }
 
         final BufferedImage image2 = this.getBackGround(bbox);
-
         final BufferedImage composite = new BufferedImage(MAP_DIMENSION,
                 MAP_DIMENSION, BufferedImage.TYPE_INT_ARGB);
         final Graphics g = composite.getGraphics();

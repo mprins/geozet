@@ -525,7 +525,7 @@ ul#geozetFlatList { margin-bottom: 20px; }
 
 
 /* copyright map */
-#copy {text-align: right; font-style: italic;}
+#copy {text-align: right; font-style: italic; font-size: .5em; }
 
 #geozetSource { position: absolute; left: 5px; bottom: 5px; }
 

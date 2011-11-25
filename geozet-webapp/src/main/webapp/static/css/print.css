@@ -56,7 +56,7 @@ html.js #geozetMiniMap,
 
 .geozetFilter { width: 400px; }
 .geozetFilter li label { padding-left: 0px; }
-.geozetFilter li input { display: none; }
+/* selectie filter wel tonen .geozetFilter li input { display: none; } */
 
 
 

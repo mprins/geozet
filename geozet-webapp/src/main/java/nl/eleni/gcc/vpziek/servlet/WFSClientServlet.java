@@ -516,10 +516,6 @@ public class WFSClientServlet extends ServletBase {
                 featDataInside.add(feature);
             }
         }
-        LOGGER.debug("Er zijn " + featDataOutside.size()
-                + " features buiten de zoeklocatie.");
-        LOGGER.debug("Zoeklokatie valt in " + featDataInside.size()
-                + " features.");
 
         // response headers instellen
         response.setContentType("text/html; charset=UTF-8");
@@ -542,64 +538,54 @@ public class WFSClientServlet extends ServletBase {
         // vervolgens de sb legen
         sb.delete(0, sb.length());
 
+        // kaart inhaken, ook als er geen zoekresultaat is
+        final RequestDispatcher map = this.getServletContext()
+                .getRequestDispatcher("/kaart");
+        if (map != null) {
+            map.include(request, response);
+        }
+
+        sb.append(this._RESOURCES.getString("KEY_BEKENDMAKINGEN_GEVONDEN"));
+
+        sb.append("<p class=\"geozetResults\"><a name=\"geozetResults\"></a>");
         if (results.size() > 0) {
-            // kaart innhaken
-            final RequestDispatcher map = this.getServletContext()
-                    .getRequestDispatcher("/kaart");
-            if (map != null) {
-                map.include(request, response);
-            }
-
-            sb.append("<p class=\"geozetResults\"><a name=\"geozetResults\" />")
-                    .append(MessageFormat.format(
-                            this._RESOURCES
-                                    .getString("KEY_BEKENDMAKINGEN_GEZOCHT"),
-                            /* afstand */
-                            this.fmtKilometer.format(Integer.valueOf(request
-                                    .getParameter(REQ_PARAM_STRAAL.code)) / 1000)
-                                    + " km",
-                            /* plaats */
-                            request.getParameter(REQ_PARAM_GEVONDEN.code),
-                            /* X coord */
-                            request.getParameter(REQ_PARAM_XCOORD.code),
-                            /* Y coord */
-                            request.getParameter(REQ_PARAM_YCOORD.code),
-                            /* aantal gevonden */
-                            results.size() == 1 ? "is " + results.size()
-                                    + " resultaat" : "zijn " + results.size()
-                                    + " resultaten"));
-            sb.append("</p>");
+            sb.append(MessageFormat.format(
+                    this._RESOURCES.getString("KEY_BEKENDMAKINGEN_GEZOCHT"),
+                    /* afstand */
+                    this.fmtKilometer.format(Integer.valueOf(request
+                            .getParameter(REQ_PARAM_STRAAL.code)) / 1000)
+                            + " km",
+                    /* plaats */
+                    request.getParameter(REQ_PARAM_GEVONDEN.code),
+                    /* X coord */
+                    request.getParameter(REQ_PARAM_XCOORD.code),
+                    /* Y coord */
+                    request.getParameter(REQ_PARAM_YCOORD.code),
+                    /* aantal gevonden */
+                    results.size() == 1 ? "is " + results.size() + " resultaat"
+                            : "zijn " + results.size() + " resultaten"));
+        } else {
+            sb.append(MessageFormat.format(
+                    this._RESOURCES
+                            .getString("KEY_BEKENDMAKINGEN_NIETSGEVONDEN"),
+                    /* afstand */
+                    this.fmtKilometer.format(Integer.valueOf(request
+                            .getParameter(REQ_PARAM_STRAAL.code)) / 1000)
+                            + " km",
+                    /* plaats */
+                    request.getParameter(REQ_PARAM_GEVONDEN.code),
+                    /* X coord */
+                    request.getParameter(REQ_PARAM_XCOORD.code),
+                    /* Y coord */
+                    request.getParameter(REQ_PARAM_YCOORD.code)));
         }
-
-        // sb.append("<dl class=\"geozetResults\">");
-        // sb.append("<dd>").append(request.getParameter(REQ_PARAM_GEVONDEN.code))
-        // .append("</dd>");
-
-        // sb.append("<dt>")
-        // .append(this._RESOURCES
-        // .getString("KEY_BEKENDMAKINGEN_GEVONDEN"))
-        // .append("</dt>");
-        // sb.append("<dd>")
-        // .append(results.size())
-        // .append(" ")
-        // .append(this._RESOURCES
-        // .getString("KEY_BEKENDMAKINGEN_RESULTATEN"))
-        // .append("</dd>");
-        //
-        // sb.append("</dl>");
-
-        if (results.size() < 1) {
-            sb.append("<p class=\"geozetResults\">")
-                    .append(this._RESOURCES
-                            .getString("KEY_BEKENDMAKINGEN_NIETSGEVONDEN"))
-                    .append("</p>\n");
-        }
+        sb.append("</p>");
 
         // afstand == 0
         if (featDataInside.size() == 0) {
             sb.append(this._RESOURCES
                     .getString("KEY_BEKENDMAKINGEN_BINNEN_GEBIED"));
-            sb.append("Uw zoeklokatie valt niet binnen een beperkingsgebied.");
+            sb.append("<p class=\"geozetResults\">Uw zoeklokatie valt niet binnen een beperkingsgebied.</p>");
         }
 
         if (featDataInside.size() > 0) {
