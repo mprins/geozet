@@ -132,9 +132,19 @@
 		<repository>
 			<id>osgeo</id>
 			<name>Open Source Geospatial Foundation Repository</name>
+			<!-- geotools snapshots -->
 			<url>http://repo.opengeo.org/</url>
 			<snapshots>
 				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>geo-solutions</id>
+			<name>Geosolutions repo</name>
+			<!-- for it.geosolutions.imageio-ext:imageio-ext-tiff:jar:1.1.2 when using snapshot 8 geotools -->
+			<url>http://maven.geo-solutions.it/</url>
+			<snapshots>
+				<enabled>false</enabled>
 			</snapshots>
 		</repository>
 		<repository>
