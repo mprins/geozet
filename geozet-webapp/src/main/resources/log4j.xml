@@ -33,18 +33,18 @@
 		<level value="debug" />
 	</logger>
 	<logger name="org.geotools">
-		<level value="warn" />
+		<level value="info" />
 	</logger>
 	<logger name="org.geotools.data.communication">
 		<level value="debug" />
 	</logger>
 	<logger name="org.apache.commons.httpclient.Wire">
-		<level value="debug" />
+		<level value="info" />
 	</logger>
 
 	<logger name="httpclient.wire">
 		<!-- debug toont al het verkeer -->
-		<level value="debug" />
+		<level value="info" />
 	</logger>
 	<logger name="org.apache.commons">
 		<level value="error" />
@@ -53,7 +53,6 @@
 		<!-- kies: consoleAppender voor in de ide of rollingFileAppender voor op 
 			de server <appender-ref ref="ganymedeAppender" /> <appender-ref ref="consoleAppender" 
 			/> <appender-ref ref="rollingFileAppender" /> -->
-		<appender-ref ref="ganymedeAppender" />
-		<appender-ref ref="consoleAppender" />
+		<appender-ref ref="rollingFileAppender" />
 	</root>
 </log4j:configuration>
