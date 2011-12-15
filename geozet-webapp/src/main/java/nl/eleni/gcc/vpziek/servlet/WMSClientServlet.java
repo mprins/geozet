@@ -69,7 +69,7 @@ public class WMSClientServlet extends ServletBase {
     /**
      * vaste afmeting van de kaart (hoogte en breedte). {@value}
      */
-    private static final int MAP_DIMENSION = 500;
+    private static final int MAP_DIMENSION = 440;
 
     /**
      * helft van de afmeting van de kaart (hoogte en breedte). {@value}
@@ -115,7 +115,7 @@ public class WMSClientServlet extends ServletBase {
             this.fgWMS = new WebMapServer(new URL(fgCapabilitiesURL));
         } catch (final ServiceException e) {
             LOGGER.fatal(
-                    "Er is een service exception opgetreden bij benaderen van de WMS(sen)",
+                    "Er is een service exception opgetreden bij benaderen van de voorgrond WMS",
                     e);
             throw new ServletException(e);
         } catch (final MalformedURLException e) {
@@ -136,14 +136,15 @@ public class WMSClientServlet extends ServletBase {
                 + bgCapabilitiesURL);
         try {
             this.bgWMS = new WebMapServer(new URL(bgCapabilitiesURL));
-        } catch (final ServiceException e) {
-            LOGGER.fatal(
-                    "Er is een service exception opgetreden bij benaderen van de WMS(sen)",
-                    e);
-            throw new ServletException(e);
+
         } catch (final MalformedURLException e) {
             LOGGER.fatal(
                     "Een url die gebruikt wordt voor de WMS capabilities is misvormd",
+                    e);
+            throw new ServletException(e);
+        } catch (final ServiceException e) {
+            LOGGER.fatal(
+                    "Er is een service exception (WMS server fout) opgetreden bij het ophalen van de achtergrond WMS capabilities",
                     e);
             throw new ServletException(e);
         } catch (final IOException e) {
