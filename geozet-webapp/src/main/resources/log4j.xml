@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
-	<!-- voor de ConversionPattern parameters zie: http://logging.apache.org/log4j/docs/api/org/apache/log4j/PatternLayout.html 
+	<!-- voor de ConversionPattern parameters zie: http://logging.apache.org/log4j/docs/api/org/apache/log4j/PatternLayout.html
 		LEVELS: debug, info, warn, error, fatal en off, all -->
 	<appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
 		<param name="Threshold" value="debug" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="VPZIEK: %5p %d{HH:mm:ss} (%C#%M:%L) - %m%n" />
+			<param name="ConversionPattern" value="VPZIEK: %5p %d (%C#%M:%L) - %m%n" />
 		</layout>
 	</appender>
 	<appender name="rollingFileAppender" class="org.apache.log4j.RollingFileAppender">
@@ -32,27 +32,32 @@
 	<logger name="nl.eleni.gcc.vpziek">
 		<level value="debug" />
 	</logger>
+	<!--
 	<logger name="org.geotools">
 		<level value="info" />
 	</logger>
-	<logger name="org.geotools.data.communication">
+	-->
+	<logger name="org.geotools.xml">
+		<level value="debug" />
+	</logger>
+	<logger name="org.geotools.data">
 		<level value="debug" />
 	</logger>
 	<logger name="org.apache.commons.httpclient.Wire">
-		<level value="info" />
+		<level value="debug" />
 	</logger>
-
 	<logger name="httpclient.wire">
 		<!-- debug toont al het verkeer -->
-		<level value="info" />
+		<level value="debug" />
 	</logger>
 	<logger name="org.apache.commons">
 		<level value="error" />
 	</logger>
 	<root>
-		<!-- kies: consoleAppender voor in de ide of rollingFileAppender voor op 
-			de server <appender-ref ref="ganymedeAppender" /> <appender-ref ref="consoleAppender" 
+		<!-- kies: consoleAppender voor in de ide of rollingFileAppender voor op
+			de server <appender-ref ref="ganymedeAppender" /> <appender-ref ref="consoleAppender"
 			/> <appender-ref ref="rollingFileAppender" /> -->
-		<appender-ref ref="rollingFileAppender" />
+		<appender-ref ref="ganymedeAppender" />
+		<appender-ref ref="consoleAppender" />
 	</root>
 </log4j:configuration>

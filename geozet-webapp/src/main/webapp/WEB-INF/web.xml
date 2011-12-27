@@ -94,23 +94,6 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
-	<!-- <servlet> <description>WFSclient voor de core functie</description>
-		<display-name>ActieveZiektenServlet</display-name> <servlet-name>ActieveZiektenServlet</servlet-name>
-		<servlet-class>nl.eleni.gcc.vpziek.servlet.ActieveZiektenServlet</servlet-class>
-		<init-param> <description>de url voor de WFS capabilities van de ... </description>
-		<param-name>wfscapabilitiesurl</param-name> <param-value>http://dbr4043v.dbr.agro.nl:8399/arcgis/services/dierziekten/MapServer/WFSServer?request=GetCapabilities&amp;service=WFS</param-value>
-		</init-param> <init-param> <description>response timeout voor communcatie
-		met de bekendmakingen WFS in seconden</description> <param-name>wfstimout</param-name>
-		<param-value>20</param-value> </init-param> <init-param> <description>maximum
-		op te halen features in een request, deze instelling is onafhankelijk van
-		de configuratie van de WFS </description> <param-name>wfsmaxfeatures</param-name>
-		<param-value>500</param-value> </init-param> <init-param> <description>het
-		wfs object type van deze bekendmakingen </description> <param-name>typename</param-name>
-		<param-value>dierziekten:besmettingsgebieden</param-value> </init-param>
-		<init-param> <description>het wfs object type van deze bekendmakingen</description>
-		<param-name>typename_two</param-name> <param-value>dierziekten:compartimenten</param-value>
-		</init-param> </servlet> -->
-
 	<servlet>
 		<description>OpenLS client servlet voor de core functie</description>
 		<servlet-name>OpenLSClientServlet</servlet-name>
@@ -131,26 +114,37 @@
 		<init-param>
 			<description>WMS capabilities url van ziekte kaart</description>
 			<param-name>fgCapabilitiesURL</param-name>
-			<!--  <param-value>http://dbr4043v.dbr.agro.nl:8399/arcgis/services/dierziekten/MapServer/WMSServer?REQUEST=GetCapabilities&amp;SERVICE=wms&amp;VERSION=1.3.0</param-value> -->
 			<param-value>http://gisdemo2.agro.nl/arcgis/services/VPZIEK/MapServer/WMSServer?request=GetCapabilities&amp;service=WMS</param-value>
-
 		</init-param>
 		<init-param>
 			<description>WMS capabilities url van achtergrond kaart</description>
 			<param-name>bgCapabilitiesURL</param-name>
-			<!-- http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/ows?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities -->
-			<param-value>http://geodata.nationaalgeoregister.nl/brtachtergrondkaart/ows?REQUEST=GetCapabilities&amp;SERVICE=WMS&amp;VERSION=1.1.1</param-value>
+			<param-value>http://geodata.nationaalgeoregister.nl/brtachtergrondkaart/wms?version=1.3.0&amp;request=GetCapabilities&amp;service=WMS</param-value>
 		</init-param>
 		<init-param>
 			<description>lagen voor de achtergrond WMS (CSV), in volgorde "bovenste" laag eerste, "onderste" laag als laatste in de lijst. Indien leeg dan worden alle lagen uit het capabilities document gebruikt.</description>
 			<param-name>bgWMSlayers</param-name>
-			<param-value>brtachtergrondkaart:top10nlfunctioneelgebiedlabels,brtachtergrondkaart:gemeentenamen,brtachtergrondkaart:top10nlgeografischgebiedlabels,
+			 <param-value>brtachtergrondkaart:top10nlfunctioneelgebiedlabels,brtachtergrondkaart:gemeentenamen,brtachtergrondkaart:top10nlgeografischgebiedlabels,
 			brtachtergrondkaart:top10nlgebouwen,brtachtergrondkaart:top10nlprovinciegrenzen,brtachtergrondkaart:top10nlnationalegrenzen,
 			brtachtergrondkaart:top10nlspoorbaandeellijnen,	brtachtergrondkaart:top10nlwaterdeellijnen,	brtachtergrondkaart:top10nlwaterdeelvlakken,
 			brtachtergrondkaart:points,brtachtergrondkaart:countries,brtachtergrondkaart:top250nllijnen,brtachtergrondkaart:lines,brtachtergrondkaart:borders,
 			brtachtergrondkaart:top250nlvlakken,brtachtergrondkaart:builtup_areas,brtachtergrondkaart:polygons,brtachtergrondkaart:shorelines,
 			brtachtergrondkaart:ondergrond</param-value>
 		</init-param>
+
+		<!-- using mappproxy greatly simplifies things -->
+<!--
+		<init-param>
+			<description>WMS capabilities url van achtergrond kaart</description>
+			<param-name>bgCapabilitiesURL</param-name>
+			<param-value>http://localhost:8080/service?SERVICE=WMS&amp;REQUEST=GetCapabilities&amp;VERSION=1.1.1</param-value>
+		</init-param>
+		<init-param>
+			<description>lagen voor de achtergrond WMS (CSV), in volgorde "bovenste" laag eerste, "onderste" laag als laatste in de lijst. Indien leeg dan worden alle lagen uit het capabilities document gebruikt.</description>
+			<param-name>bgWMSlayers</param-name>
+			<param-value>brtachtergrondkaart</param-value>
+		</init-param>
+-->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet>
