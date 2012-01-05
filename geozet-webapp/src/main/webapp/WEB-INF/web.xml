@@ -101,7 +101,8 @@
 		<init-param>
 			<description>url voor de gazetteer</description>
 			<param-name>openlsserverurl</param-name>
-			<param-value>http://geodata.nationaalgeoregister.nl/geocoder/Geocoder</param-value>
+			<!-- <param-value>http://geodata.nationaalgeoregister.nl/geocoder/Geocoder</param-value> -->
+			<param-value>http://nieuwsinkaart.nl/cgi-bin/yahoogeocoderopenls.cgi</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
