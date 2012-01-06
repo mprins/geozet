@@ -45,6 +45,7 @@ import org.geotools.ows.ServiceException;
 import org.geotools.styling.SLDTransformer;
 import org.geotools.styling.StyledLayerDescriptor;
 import org.opengis.geometry.BoundingBox;
+import org.xml.sax.SAXException;
 
 /**
  * WMSClientServlet.
@@ -136,7 +137,6 @@ public class WMSClientServlet extends ServletBase {
                 + bgCapabilitiesURL);
         try {
             this.bgWMS = new WebMapServer(new URL(bgCapabilitiesURL));
-
         } catch (final MalformedURLException e) {
             LOGGER.fatal(
                     "Een url die gebruikt wordt voor de WMS capabilities is misvormd",
@@ -145,6 +145,13 @@ public class WMSClientServlet extends ServletBase {
         } catch (final ServiceException e) {
             LOGGER.fatal(
                     "Er is een service exception (WMS server fout) opgetreden bij het ophalen van de achtergrond WMS capabilities",
+                    e);
+            throw new ServletException(e);
+        } catch (final SAXException e) {
+            // Unable to parse the response from the server
+            // For example, the capabilities it returned was not valid
+            LOGGER.fatal(
+                    "Er is een parse fout opgetreden bij lezen van de WMS capabilities",
                     e);
             throw new ServletException(e);
         } catch (final IOException e) {

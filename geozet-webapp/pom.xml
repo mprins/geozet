@@ -215,9 +215,6 @@
 			<artifactId>gt-epsg-wkt</artifactId>
 			<version>${geotools.version}</version>
 		</dependency>
-		<!-- <dependency> <groupId>org.geotools</groupId> <artifactId>gt-epsg-hsql</artifactId>
-			<version>${geotools.version}</version> </dependency> -->
-
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -626,12 +623,6 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-
-
-
-
 	</build>
 	<reporting />
-
-
 </project>
