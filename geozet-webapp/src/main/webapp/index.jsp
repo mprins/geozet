@@ -38,7 +38,7 @@
 
 <div id="geozetContent" class="start <%=coreOnly(request)%>">
 
-<p>Op dit moment is er alleen een core variant beschikbaar, <a href="index.jsp?coreonly=true" >klik hier</a> of zet javascript uit in je browser.</p>
+<p>Op dit moment is er alleen een zogenaamde "core variant" beschikbaar, <a href="index.jsp?coreonly=true" >klik hier</a> of zet javascript uit in je browser.</p>
 
 		<div id="geozetArticle">
 

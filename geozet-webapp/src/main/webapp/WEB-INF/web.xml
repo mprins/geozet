@@ -117,6 +117,7 @@
 			<param-name>fgCapabilitiesURL</param-name>
 			<param-value>http://gisdemo2.agro.nl/arcgis/services/VPZIEK/MapServer/WMSServer?request=GetCapabilities&amp;service=WMS</param-value>
 		</init-param>
+		<!--
 		<init-param>
 			<description>WMS capabilities url van achtergrond kaart</description>
 			<param-name>bgCapabilitiesURL</param-name>
@@ -131,6 +132,36 @@
 			brtachtergrondkaart:points,brtachtergrondkaart:countries,brtachtergrondkaart:top250nllijnen,brtachtergrondkaart:lines,brtachtergrondkaart:borders,
 			brtachtergrondkaart:top250nlvlakken,brtachtergrondkaart:builtup_areas,brtachtergrondkaart:polygons,brtachtergrondkaart:shorelines,
 			brtachtergrondkaart:ondergrond</param-value>
+		</init-param>
+		-->
+		<!--
+		<init-param>
+			<description>WMS capabilities url van achtergrond kaart</description>
+			<param-name>bgCapabilitiesURL</param-name>
+			<param-value>http://geodata.nationaalgeoregister.nl/top10nl/wms?version=1.1.1&amp;request=GetCapabilities&amp;service=WMS</param-value>
+		</init-param>
+		<init-param>
+			<description>lagen voor de achtergrond WMS (CSV), in volgorde "bovenste" laag eerste, "onderste" laag als laatste in de lijst. Indien leeg dan worden alle lagen uit het capabilities document gebruikt.</description>
+			<param-name>bgWMSlayers</param-name>
+			 <param-value>top10nl:functioneelgebied_labels,top10nl:gebouwen,top10nl:geo_labels,top10nl:inrichtingselement_punten,top10nl:inrichtingselementlijnen,
+			 top10nl:spoorbaandeel_lijnen,top10nl:waterdeellijnen,top10nl:wegdeelvlakken,top10nl:waterdeel_vlakken,top10nl:terreinen</param-value>
+		</init-param>
+		-->
+		<init-param>
+			<description>WMS capabilities url van achtergrond kaart</description>
+			<param-name>bgCapabilitiesURL</param-name>
+			<param-value>http://osm.wheregroup.com/cgi-bin/osm_basic.xml?REQUEST=GetCapabilities&amp;SERVICE=WMS&amp;VERSION=1.1.1</param-value>
+		</init-param>
+		<init-param>
+			<description>lagen voor de achtergrond WMS (CSV), in volgorde "bovenste" laag eerste, "onderste" laag als laatste in de lijst. Indien leeg dan worden alle lagen uit het capabilities document gebruikt.</description>
+			<param-name>bgWMSlayers</param-name>
+			 <param-value>OSM_Basic</param-value>
+			 <!--
+			 <param-value>Grenzen,Landwirtschaft,Industriegebiet,Bauland,Gruenflaeche,unkultiviertes_Land,Park,Naherholungsgebiet,Wald,Wiese,Fussgaengerzone,
+			 Gebaeude,Wasser,Fluesse,Baeche,Kanal,Wasserbecken,Insel,Kueste,Inselpunkte,Strand,Fussgaengerweg,Radweg,Wege,Wohnstrasse,Zufahrtswege,
+			 einfache_Strasse,Landstrasse,Bundesstrasse,Kraftfahrstrasse,Autobahn,Ortschaft,Weiler,Stadtteil,Dorf,Stadt,Grossstadt,Bahn,Bahnhof,
+			 Airport,Kirchengelaende,Friedhof,Kirche,Graeber,copyright</param-value>
+			 -->
 		</init-param>
 
 		<!-- using mappproxy greatly simplifies things -->

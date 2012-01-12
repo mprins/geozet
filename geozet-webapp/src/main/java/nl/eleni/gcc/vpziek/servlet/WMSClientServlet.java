@@ -482,9 +482,7 @@ public class WMSClientServlet extends ServletBase {
                 + imagepath
                 + "\" longdesc=\"#geozetResults\"/>");
 
-        out.println("<div id=\"copy\">Kaartgegevens: © <a href=\"http://www.cbs.nl\">CBS</a>, "
-                + "<a href=\"http://www.kadaster.nl\">Kadaster</a>, "
-                + "<a href=\"http://openstreetmap.org\">OpenStreetMap</a>-auteurs (<a href=\"http://creativecommons.org/licenses/by-sa/2.0/deed.nl\">CC-BY-SA</a>).</div></div>");
+        out.println("<div id=\"copy\">"+_RESOURCES.getString("KEY_BEKENDMAKINGEN_COPYRIGHT")+"</div></div>");
 
         // out.flush();
     }
