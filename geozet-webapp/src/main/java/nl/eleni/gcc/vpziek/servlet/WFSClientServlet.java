@@ -545,7 +545,8 @@ public class WFSClientServlet extends ServletBase {
             map.include(request, response);
         }
 
-        sb.append(this._RESOURCES.getString("KEY_BEKENDMAKINGEN_GEVONDEN"));
+        sb.append(this._RESOURCES
+                .getString("KEY_BEKENDMAKINGEN_GEVONDEN_TITEL"));
 
         sb.append("<p class=\"geozetResults\"><a name=\"geozetResults\"></a>");
         if (results.size() > 0) {

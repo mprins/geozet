@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -45,7 +46,6 @@ import org.geotools.ows.ServiceException;
 import org.geotools.styling.SLDTransformer;
 import org.geotools.styling.StyledLayerDescriptor;
 import org.opengis.geometry.BoundingBox;
-import org.xml.sax.SAXException;
 
 /**
  * WMSClientServlet.
@@ -145,13 +145,6 @@ public class WMSClientServlet extends ServletBase {
         } catch (final ServiceException e) {
             LOGGER.fatal(
                     "Er is een service exception (WMS server fout) opgetreden bij het ophalen van de achtergrond WMS capabilities",
-                    e);
-            throw new ServletException(e);
-        } catch (final SAXException e) {
-            // Unable to parse the response from the server
-            // For example, the capabilities it returned was not valid
-            LOGGER.fatal(
-                    "Er is een parse fout opgetreden bij lezen van de WMS capabilities",
                     e);
             throw new ServletException(e);
         } catch (final IOException e) {
@@ -409,14 +402,12 @@ public class WMSClientServlet extends ServletBase {
      *             the service exception
      * @throws IOException
      *             Signals that an I/O exception has occurred.
-     * 
-     * @todo cache van basemap image implementeren
-     * 
      */
     private BufferedImage getBackGround(BoundingBox bbox)
             throws ServiceException, IOException {
 
         if (this.bgWMSCache.containsKey(bbox)) {
+            // check cache
             return this.bgWMSCache.get(bbox);
         }
 
@@ -467,7 +458,8 @@ public class WMSClientServlet extends ServletBase {
     protected void renderHTMLResults(HttpServletRequest request,
             HttpServletResponse response, File image) throws IOException,
             ServletException {
-        // response headers instellen gebeurt al in de aanroepende servlet
+        // response headers instellen en flush gebeurt al in de aanroepende
+        // servlet!
         // response.setContentType("text/html; charset=UTF-8");
         // response.setBufferSize(8192);
         if (image == null) {
@@ -476,14 +468,15 @@ public class WMSClientServlet extends ServletBase {
         }
         final String imagepath = MAP_CACHE_DIR + "/" + image.getName();
         final PrintWriter out = response.getWriter();
-        out.println("<div id=\"kaart\"><img id=\"resultsMap\" class=\"resultsMap\" alt=\"Een kaart van de beperkingsgebieden in een straal van "
-                + (int) (this.parseLocation(request)[2] / 1000)
-                + " kilometer om de zoeklocatie\" src=\""
-                + imagepath
-                + "\" longdesc=\"#geozetResults\"/>");
-
-        out.println("<div id=\"copy\">"+_RESOURCES.getString("KEY_BEKENDMAKINGEN_COPYRIGHT")+"</div></div>");
-
+        out.println("<div id=\"kaart\"><img id=\"resultsMap\" class=\"resultsMap\" alt=\""
+                + MessageFormat.format(this._RESOURCES
+                        .getString("KEY_BEKENDMAKINGEN_GEVONDEN"), (int) (this
+                        .parseLocation(request)[2] / 1000))
+                + "\" src=\""
+                + imagepath + "\" longdesc=\"#geozetResults\"/>");
+        out.println("<div id=\"copy\">"
+                + this._RESOURCES.getString("KEY_BEKENDMAKINGEN_COPYRIGHT")
+                + "</div></div>");
         // out.flush();
     }
 

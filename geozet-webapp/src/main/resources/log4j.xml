@@ -11,7 +11,7 @@
 	</appender>
 	<appender name="rollingFileAppender" class="org.apache.log4j.RollingFileAppender">
 		<param name="Threshold" value="debug" />
-		<param name="File" value="${catalina.home}/logs/vpziek.log" />
+		<param name="File" value="${catalina.home}/logs/vpziek-log4j.log" />
 		<param name="Append" value="true" />
 		<param name="MaxFileSize" value="5MB" />
 		<param name="MaxBackupIndex" value="10" />
@@ -38,17 +38,17 @@
 	</logger>
 	-->
 	<logger name="org.geotools.xml">
-		<level value="debug" />
+		<level value="info" />
 	</logger>
 	<logger name="org.geotools.data">
-		<level value="debug" />
+		<level value="info" />
 	</logger>
 	<logger name="org.apache.commons.httpclient.Wire">
-		<level value="debug" />
+		<level value="info" />
 	</logger>
 	<logger name="httpclient.wire">
 		<!-- debug toont al het verkeer -->
-		<level value="debug" />
+		<level value="info" />
 	</logger>
 	<logger name="org.apache.commons">
 		<level value="error" />
@@ -57,7 +57,6 @@
 		<!-- kies: consoleAppender voor in de ide of rollingFileAppender voor op
 			de server <appender-ref ref="ganymedeAppender" /> <appender-ref ref="consoleAppender"
 			/> <appender-ref ref="rollingFileAppender" /> -->
-		<appender-ref ref="ganymedeAppender" />
-		<appender-ref ref="consoleAppender" />
+		<appender-ref ref="rollingFileAppender" />
 	</root>
 </log4j:configuration>
