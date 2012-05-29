@@ -139,6 +139,15 @@
 			</snapshots>
 		</repository>
 		<repository>
+			<id>osgeo-old</id>
+			<name>Open Source Geospatial Foundation Repository</name>
+			<!-- geotools snapshots -->
+			<url>http://download.osgeo.org/webdav/geotools</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
 			<id>geo-solutions</id>
 			<name>Geosolutions repo</name>
 			<!-- for it.geosolutions.imageio-ext:imageio-ext-tiff:jar:1.1.2 when using
@@ -262,7 +271,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>buildnumber-maven-plugin</artifactId>
-				<version>1.0</version>
+				<version>1.1</version>
 				<executions>
 					<execution>
 						<phase>validate</phase>
@@ -362,7 +371,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>lesscss-maven-plugin</artifactId>
-				<version>1.0-beta-1</version>
+				<version>1.0-beta-3</version>
 				<configuration>
 					<outputDirectory>${project.build.directory}/${project.build.finalName}/static/css</outputDirectory>
 				</configuration>
