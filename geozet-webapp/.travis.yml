@@ -1,0 +1,18 @@
+language: java
+# before_install:
+# before_script: mvn install -DskipTests=true
+script: mvn --file geozet-webapp/pom.xml verify
+# after_success:
+# after_failure:
+# after_script:
+jdk:
+  - oraclejdk7
+  - openjdk7
+  - openjdk6
+
+notifications:
+  email: true
+
+branches:
+  only:
+    - geozet-4-2d
