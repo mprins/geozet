@@ -55,8 +55,11 @@
 	</logger>
 	<root>
 		<!-- kies: consoleAppender voor in de ide of rollingFileAppender voor op
-			de server <appender-ref ref="ganymedeAppender" /> <appender-ref ref="consoleAppender"
-			/> <appender-ref ref="rollingFileAppender" /> -->
-		<appender-ref ref="rollingFileAppender" />
+			de server 
+			<appender-ref ref="ganymedeAppender" /> 
+			<appender-ref ref="consoleAppender" />
+			<appender-ref ref="rollingFileAppender" /> 
+		-->
+		<appender-ref ref="ganymedeAppender" />
 	</root>
 </log4j:configuration>
