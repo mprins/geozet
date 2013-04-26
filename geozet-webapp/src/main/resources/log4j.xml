@@ -60,6 +60,6 @@
 			<appender-ref ref="consoleAppender" />
 			<appender-ref ref="rollingFileAppender" /> 
 		-->
-		<appender-ref ref="ganymedeAppender" />
+		<appender-ref ref="rollingFileAppender" />
 	</root>
 </log4j:configuration>
