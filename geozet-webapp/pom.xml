@@ -362,8 +362,7 @@
 							<addClasspath>true</addClasspath>
 						</manifest>
 						<manifestEntries>
-							<Implementation-Build>branch: ${buildScmBranch} rev:
-								${buildNumber} timestamp: ${timestamp}</Implementation-Build>
+							<Implementation-Build>branch: ${buildScmBranch} rev: ${buildNumber} timestamp: ${timestamp}</Implementation-Build>
 							<SCM-Revision>${scm.revision}</SCM-Revision>
 							<url>${project.url}</url>
 							<release>${project.version}</release>
