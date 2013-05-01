@@ -313,7 +313,8 @@ fieldset#geozetFilter { padding: 0; }
 	html.js p.geozetInfo { position: absolute; z-index: 1000; display: none; width: 225px; background-color: #6D7F97; color: #fff; padding: 8px; margin: 4px; }
 
 #geozetContent .geozetFilter { padding: 0; background-color: #fff; }
-#geozetContent .geozetFilter li { border-bottom: 1px solid #ff8a00; padding: 2px 24px 2px 2px; position: relative; background-image: url('img/icons-map.png'); background-repeat: no-repeat; }
+/* #geozetContent .geozetFilter li { border-bottom: 1px solid #ff8a00; padding: 2px 24px 2px 2px; position: relative; background-image: url('img/icons-map.png'); background-repeat: no-repeat; } */
+#geozetContent .geozetFilter li { border-bottom: 1px solid #ff8a00; padding: 2px 24px 2px 2px; position: relative; }
 #geozetContent .geozetFilter li label{  display: block; padding: 4px 0 4px 24px;   }
 #geozetContent .geozetFilter li input { position: absolute; right: 0; top: 6px; margin: 0;  }
 
