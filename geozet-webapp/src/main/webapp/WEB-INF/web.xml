@@ -5,12 +5,12 @@
 	version="2.5">
 	<display-name>nl.eleni.gcc.vpziek-TRUNK</display-name>
 	<description>VPZIEK web applicatie</description>
+
 	<context-param>
 		<description>aantal items (zoekresultaat) op een pagina</description>
 		<param-name>paginalengte</param-name>
 		<param-value>10</param-value>
 	</context-param>
-
 	<context-param>
 		<description>resourcebundle stam naam</description>
 		<param-name>resourcebundle</param-name>
@@ -63,7 +63,6 @@
 			<description>de url voor de WFS capabilities van de ...
 		</description>
 			<param-name>wfscapabilitiesurl</param-name>
-			<!-- <param-value>http://dbr4043v.dbr.agro.nl:8399/arcgis/services/dierziekten/MapServer/WFSServer?request=GetCapabilities&amp;service=WFS</param-value> -->
 			<param-value>http://gisdemo2.agro.nl/arcgis/services/VPZIEK/MapServer/WFSServer?request=GetCapabilities&amp;service=WFS</param-value>
 		</init-param>
 
@@ -116,25 +115,22 @@
 			<param-name>fgCapabilitiesURL</param-name>
 			<param-value>http://gisdemo2.agro.nl/arcgis/services/VPZIEK/MapServer/WMSServer?request=GetCapabilities&amp;service=WMS</param-value>
 		</init-param>
-		<!-- <init-param> <description>WMS capabilities url van achtergrond kaart</description>
-			<param-name>bgCapabilitiesURL</param-name> <param-value>http://geodata.nationaalgeoregister.nl/brtachtergrondkaart/wms?version=1.3.0&amp;request=GetCapabilities&amp;service=WMS</param-value>
-			</init-param> <init-param> <description>lagen voor de achtergrond WMS (CSV),
-			in volgorde "bovenste" laag eerste, "onderste" laag als laatste in de lijst.
-			Indien leeg dan worden alle lagen uit het capabilities document gebruikt.</description>
-			<param-name>bgWMSlayers</param-name> <param-value>brtachtergrondkaart:top10nlfunctioneelgebiedlabels,brtachtergrondkaart:gemeentenamen,brtachtergrondkaart:top10nlgeografischgebiedlabels,
-			brtachtergrondkaart:top10nlgebouwen,brtachtergrondkaart:top10nlprovinciegrenzen,brtachtergrondkaart:top10nlnationalegrenzen,
-			brtachtergrondkaart:top10nlspoorbaandeellijnen, brtachtergrondkaart:top10nlwaterdeellijnen,
-			brtachtergrondkaart:top10nlwaterdeelvlakken, brtachtergrondkaart:points,brtachtergrondkaart:countries,brtachtergrondkaart:top250nllijnen,brtachtergrondkaart:lines,brtachtergrondkaart:borders,
-			brtachtergrondkaart:top250nlvlakken,brtachtergrondkaart:builtup_areas,brtachtergrondkaart:polygons,brtachtergrondkaart:shorelines,
-			brtachtergrondkaart:ondergrond</param-value> </init-param> -->
-		<!-- <init-param> <description>WMS capabilities url van achtergrond kaart</description>
-			<param-name>bgCapabilitiesURL</param-name> <param-value>http://geodata.nationaalgeoregister.nl/top10nl/wms?version=1.1.1&amp;request=GetCapabilities&amp;service=WMS</param-value>
-			</init-param> <init-param> <description>lagen voor de achtergrond WMS (CSV),
-			in volgorde "bovenste" laag eerste, "onderste" laag als laatste in de lijst.
-			Indien leeg dan worden alle lagen uit het capabilities document gebruikt.</description>
-			<param-name>bgWMSlayers</param-name> <param-value>top10nl:functioneelgebied_labels,top10nl:gebouwen,top10nl:geo_labels,top10nl:inrichtingselement_punten,top10nl:inrichtingselementlijnen,
-			top10nl:spoorbaandeel_lijnen,top10nl:waterdeellijnen,top10nl:wegdeelvlakken,top10nl:waterdeel_vlakken,top10nl:terreinen</param-value>
-			</init-param> -->
+		<init-param> 
+			<description>WMS capabilities url van achtergrond kaart</description>
+			<param-name>bgCapabilitiesURL</param-name>
+			<param-value>http://geodata.nationaalgeoregister.nl/brtachtergrondkaart/ows?REQUEST=GetCapabilities&amp;SERVICE=WMS</param-value>
+		</init-param>
+		<init-param>
+			<description>lagen voor de achtergrond WMS (CSV),in volgorde "bovenste" laag eerste, "onderste" laag als laatste in de lijst. 
+					Indien leeg dan worden alle lagen uit het capabilities document gebruikt.</description>
+			<param-name>bgWMSlayers</param-name>
+			<param-value>top10nlfunctioneelgebiedlabels,gemeentenamen,top10nlgeografischgebiedlabels, 
+					top10nlgebouwen,top10nlprovinciegrenzen,top10nlnationalegrenzen, 
+					top10nlspoorbaandeellijnen,top10nlwaterdeellijnen, top10nlwaterdeelvlakken, points,countries,
+					top250nllijnen,lines,borders, top250nlvlakken,builtup_areas,polygons,shorelines, ondergrond</param-value>
+		</init-param>
+
+<!--
 		<init-param>
 			<description>WMS capabilities url van achtergrond kaart</description>
 			<param-name>bgCapabilitiesURL</param-name>
@@ -143,17 +139,13 @@
 		<init-param>
 			<description>lagen voor de achtergrond WMS (CSV), in volgorde "bovenste" laag eerste, "onderste" laag als laatste in de lijst. Indien leeg dan worden alle lagen uit het capabilities document gebruikt.</description>
 			<param-name>bgWMSlayers</param-name>
-			<!-- <param-value>OSM_Basic</param-value> -->
-			<!-- <param-value>Grenzen,Landwirtschaft,Industriegebiet,Bauland,Gruenflaeche,unkultiviertes_Land,Park,Naherholungsgebiet,Wald,Wiese,Fussgaengerzone,
-				Gebaeude,Wasser,Fluesse,Baeche,Kanal,Wasserbecken,Insel,Kueste,Inselpunkte,Strand,Fussgaengerweg,Radweg,Wege,Wohnstrasse,Zufahrtswege,
-				einfache_Strasse,Landstrasse,Bundesstrasse,Kraftfahrstrasse,Autobahn,Ortschaft,Weiler,Stadtteil,Dorf,Stadt,Grossstadt,Bahn,Bahnhof,
-				Airport,Kirchengelaende,Friedhof,Kirche,Graeber,copyright</param-value> copyright,Graeber,Kirche,Friedhof,Kirchengelaende,Airport,Bahnhof,Bahn,Grossstadt,Stadt,Dorf,Stadtteil,Weiler,Ortschaft,Autobahn,Kraftfahrstrasse,Bundesstrasse,Landstrasse,einfache_Strasse,Zufahrtswege,Wohnstrasse,Wege,Radweg,Fussgaengerweg,Strand,Inselpunkte,Kueste,Insel,Wasserbecken,Kanal,Baeche,Fluesse,Wasser,Gebaeude,Fussgaengerzone,Wiese,Wald,Naherholungsgebiet,Park,unkultiviertes_Land,Gruenflaeche,Bauland,Industriegebiet,Landwirtschaft,Grenzen -->
 			<param-value>Bahn,
 			Grossstadt,Stadt,Dorf,Stadtteil,Weiler,Ortschaft,
 			Autobahn,Kraftfahrstrasse,Bundesstrasse,Landstrasse,einfache_Strasse,Zufahrtswege,Wohnstrasse,Wege,
 			Inselpunkte,Kueste,Insel,Wasserbecken,Kanal,Baeche,Fluesse,Wasser,
 			Gebaeude,Fussgaengerzone,Wiese,Wald,Naherholungsgebiet,Park,unkultiviertes_Land,Gruenflaeche,Bauland,Industriegebiet,Landwirtschaft,Grenzen</param-value>
 		</init-param>
+-->
 
 		<!-- using mappproxy greatly simplifies things -->
 		<!-- <init-param> <description>WMS capabilities url van achtergrond kaart</description>
@@ -194,7 +186,6 @@
 		<servlet-name>WMSClientServlet</servlet-name>
 		<url-pattern>/kaart</url-pattern>
 	</servlet-mapping>
-
 
 	<error-page>
 		<exception-type>java.lang.Throwable</exception-type>

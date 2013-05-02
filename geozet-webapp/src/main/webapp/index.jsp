@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	import="nl.geozet.common.CoreResources,nl.geozet.common.StringConstants"%>
+
 <%
 	    CoreResources RESOURCES = new CoreResources(this
 	            .getServletContext().getInitParameter(
@@ -38,9 +39,11 @@
 
 <div id="geozetContent" class="start <%=coreOnly(request)%>">
 
-<p>Op dit moment is er alleen een zogenaamde "core variant" beschikbaar, <a href="index.jsp?coreonly=true" >klik hier</a> of zet javascript uit in je browser.</p>
-
 		<div id="geozetArticle">
+
+<%if (!coreOnlyEnabled(request)){%>
+<p class="geozetError">Op dit moment is er alleen een zogenaamde "core variant" beschikbaar, <a href="index.jsp?coreonly=true" >klik hier</a> of zet javascript uit in je browser.</p>
+<%}%>
 
 			<div id="geozetCore">
 

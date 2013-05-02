@@ -164,6 +164,7 @@ form#geozetCoreEntree #adres.error { width: 15em; margin-left: 174px; border-col
 
 #geozetCore strong.geozetError,
 #geozetEnhancedSearch p.geozetError,
+#geozetArticle p.geozetError,
 #geozetStart p.geozetError { color: #ff2800; font-weight: bold; padding-left: 16px; background:url("img/error.png") no-repeat -12px 1px; }
 #geozetCore p.geozetError { color: #ff2800; font-weight: bold; padding-left: 16px; background:url("img/error.png") no-repeat -12px 1px; margin-top: 1em;  }
 
