@@ -24,7 +24,7 @@
 		</site>
 	</distributionManagement>
 	<properties>
-		<geotools.version>10-SNAPSHOT</geotools.version>
+		<geotools.version>11-SNAPSHOT</geotools.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<geozet.finalname>${project.artifactId}</geozet.finalname>
 		<site.dir>file://${java.io.tmpdir}/maven-sites/${project.artifactId}</site.dir>
