@@ -1,0 +1,409 @@
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>VPZIEK webapp 0.1-SNAPSHOT - FindBugs Bug Detector Report</title>
+    <link rel="stylesheet" href="./css/maven-theme.css" type="text/css" />
+    <link rel="stylesheet" href="./css/maven-base.css" type="text/css"/>
+    <link rel="stylesheet" href="./css/prettify.css" type="text/css"/>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+    <script type="text/javascript" src="./js/prettify.js"></script>
+    <script type="text/javascript" src="./js/niftycube.js"></script>
+    <script type="text/javascript">
+        window.onload=function() {
+            Nifty("div\#wrapper", "big");
+            Nifty("div#breadcrumbs", "small");
+            Nifty("div\#navcolumn", "small");
+            Nifty("div.source", "medium");
+            prettyPrint();
+        }
+    </script>
+        <meta name="Date-Revision-yyyymmdd" content="20140116" />
+                                                    
+<meta content="faq" name="faq"/>
+                    </head>
+  <body>
+    <div id="wrapper">
+        <div id="banner">
+                        <div id="bannerLeft">
+    
+                                            <img src="images/logo.png" alt="Min EL&I" />
+    
+            </div>
+                              <div id="bannerRight">
+    
+            VPZIEK webapp
+    
+            </div>
+                <div class="clear">
+            <hr/>
+          </div>
+        </div>
+        <div id="breadcrumbs">
+              
+  
+
+  
+    
+            
+  
+    
+            <div class="xleft">
+        <span id="publishDate">Meest recente publicatie: 16-januari-2014</span>
+                  &nbsp;| <span id="projectVersion">Versie: 0.1-SNAPSHOT</span>
+                      </div>
+                <div class="xright">            <a href="./">Wiki</a>
+            
+  
+
+  
+    
+            
+  
+    
+  </div>
+          <div class="clear">
+            <hr/>
+          </div>
+        </div>
+        <div id="leftColumn">
+          <div id="navcolumn">
+               
+  
+
+  
+    
+            
+  
+    
+                       <h5>Links</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="${project.issueManagement.url}">${project.issueManagement.system}</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://gisdemo.agro.nl/jenkins/job/geozet-4-2d/" class="externalLink">Jenkins</a>
+          </li>
+          </ul>
+              <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="releasenotes.html">Release notes</a>
+          </li>
+              
+    <li class="none">
+                    <a href="ontwikkelhandleiding.html">Ontwikkel handleiding</a>
+          </li>
+              
+    <li class="none">
+                    <a href="technisch_ontwerp.html">Technisch Ontwerp Core</a>
+          </li>
+              
+    <li class="none">
+                    <a href="techdoc_geozet_viewer.odt">Technisch Ontwerp Enhanced</a>
+          </li>
+              
+    <li class="none">
+                    <a href="functioneel_ontwerp.html">Functioneel Ontwerp</a>
+          </li>
+              
+    <li class="none">
+                    <a href="meldingen.html">FAQ meldingen</a>
+          </li>
+              
+    <li class="none">
+                    <a href="faq.html">FAQ algemeen</a>
+          </li>
+          </ul>
+              <h5>Installatie</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="releasenotes.html">Release notes</a>
+          </li>
+              
+    <li class="none">
+                    <a href="installatiehandleiding.html">Installatie handleiding</a>
+          </li>
+          </ul>
+              <h5>Deployed Builds</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://gisdemo.agro.nl/vpziek/" class="externalLink">webapp</a>
+          </li>
+          </ul>
+                        <h5>Project documentatie</h5>
+            <ul>
+              
+                
+                    
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project informatie</a>
+                </li>
+              
+                
+                    
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                        
+                  
+                  
+                  
+                  
+              
+            <li class="expanded">
+                    <a href="project-reports.html">Project rapporten</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="xref/index.html">Source Xref</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="xref-test/index.html">Test Source Xref</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="dependency-updates-report.html">Dependency Updates Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="plugin-updates-report.html">Plugin Updates Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="dev-activity.html">Developer Activity</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="file-activity.html">File Activity</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="changelog.html">Change Log</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="apidocs/index.html">JavaDocs</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="testapidocs/index.html">Test JavaDocs</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cobertura/index.html">Cobertura testdekking</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="surefire-report.html">Surefire Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="failsafe-report.html">Failsafe Report</a>
+          </li>
+                  
+    <li class="none">
+              <strong>FindBugs Report</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="checkstyle.html">Checkstyle</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cpd.html">CPD Rapport</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="pmd.html">PMD Rapport</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="taglist.html">Tag List</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+                                                     
+                        
+                        
+            <a href="http://www.geotools.org/" title="Geotools" class="poweredBy">
+                            <img  class="poweredBy"
+                    alt="Geotools"
+                    src="images/geotools.png"
+                    width="90"
+                    height="30"
+              />
+            </a>
+                                   
+  
+
+  
+    
+            
+  
+    
+            </div>
+        </div>
+        <div id="bodyColumn">
+          <div id="contentBox">
+            <div class="section">
+<h2>FindBugs Bug Detector Report<a name="FindBugs_Bug_Detector_Report"></a></h2>
+<p>The following document contains the results of <a class="externalLink" href="http://findbugs.sourceforge.net">FindBugs Report</a></p>
+<p>FindBugs Version is <i>2.0.2</i></p>
+<p>Threshold is <i></i></p>
+<p>Effort is <i>min</i></p></div>
+<div class="section">
+<h2>Summary<a name="Summary"></a></h2>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Classes</th>
+<th>Bugs</th>
+<th>Errors</th>
+<th>Missing Classes</th></tr>
+<tr class="b">
+<td>28</td>
+<td>6</td>
+<td>0</td>
+<td>0</td></tr></table></div>
+<div class="section">
+<h2>Files<a name="Files"></a></h2>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Class</th>
+<th>Bugs</th></tr>
+<tr class="b">
+<td><a href="#nl.eleni.gcc.vpziek.servlet.WMSClientServlet">nl.eleni.gcc.vpziek.servlet.WMSClientServlet</a></td>
+<td>2</td></tr>
+<tr class="a">
+<td><a href="#nl.geozet.common.DataCategorieen">nl.geozet.common.DataCategorieen</a></td>
+<td>1</td></tr>
+<tr class="b">
+<td><a href="#nl.geozet.openls.client.OpenLSClient">nl.geozet.openls.client.OpenLSClient</a></td>
+<td>3</td></tr></table></div><a name="nl.eleni.gcc.vpziek.servlet.WMSClientServlet"></a>
+<div class="section">
+<h3>nl.eleni.gcc.vpziek.servlet.WMSClientServlet<a name="nl.eleni.gcc.vpziek.servlet.WMSClientServlet"></a></h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="b">
+<td>Class nl.eleni.gcc.vpziek.servlet.WMSClientServlet defines non-transient non-serializable instance field bgWMSCache</td>
+<td>BAD_PRACTICE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#SE_BAD_FIELD">SE_BAD_FIELD</a></td>
+<td><a href="./xref/nl/eleni/gcc/vpziek/servlet/WMSClientServlet.html#">Not available</a></td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>nl.eleni.gcc.vpziek.cache.WMSCache stored into non-transient field WMSClientServlet.bgWMSCache</td>
+<td>BAD_PRACTICE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#SE_BAD_FIELD_STORE">SE_BAD_FIELD_STORE</a></td>
+<td><a href="./xref/nl/eleni/gcc/vpziek/servlet/WMSClientServlet.html#101">101</a></td>
+<td>Medium</td></tr></table></div><a name="nl.geozet.common.DataCategorieen"></a>
+<div class="section">
+<h3>nl.geozet.common.DataCategorieen<a name="nl.geozet.common.DataCategorieen"></a></h3>
+<table border="0" class="bodyTable">
+<tr class="b">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="a">
+<td>nl.geozet.common.DataCategorieen.&lt;static initializer for DataCategorieen&gt;() may fail to clean up java.io.InputStream</td>
+<td>EXPERIMENTAL</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#OBL_UNSATISFIED_OBLIGATION">OBL_UNSATISFIED_OBLIGATION</a></td>
+<td><a href="./xref/nl/geozet/common/DataCategorieen.html#43">43</a></td>
+<td>Medium</td></tr></table></div><a name="nl.geozet.openls.client.OpenLSClient"></a>
+<div class="section">
+<h3>nl.geozet.openls.client.OpenLSClient<a name="nl.geozet.openls.client.OpenLSClient"></a></h3>
+<table border="0" class="bodyTable">
+<tr class="b">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="a">
+<td>Found reliance on default encoding in nl.geozet.openls.client.OpenLSClient.doGetOpenLSRequest(String, Map): new java.io.InputStreamReader(InputStream)</td>
+<td>I18N</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_DEFAULT_ENCODING">DM_DEFAULT_ENCODING</a></td>
+<td><a href="./xref/nl/geozet/openls/client/OpenLSClient.html#82">82</a></td>
+<td>High</td></tr>
+<tr class="b">
+<td>Found reliance on default encoding in nl.geozet.openls.client.OpenLSClient.doPostOpenLSRequest(String, Map): new java.io.InputStreamReader(InputStream)</td>
+<td>I18N</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_DEFAULT_ENCODING">DM_DEFAULT_ENCODING</a></td>
+<td><a href="./xref/nl/geozet/openls/client/OpenLSClient.html#142">142</a></td>
+<td>High</td></tr>
+<tr class="a">
+<td>Found reliance on default encoding in nl.geozet.openls.client.OpenLSClient.doPostOpenLSRequest(String, GeocodeRequest): new java.io.InputStreamReader(InputStream)</td>
+<td>I18N</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_DEFAULT_ENCODING">DM_DEFAULT_ENCODING</a></td>
+<td><a href="./xref/nl/geozet/openls/client/OpenLSClient.html#201">201</a></td>
+<td>High</td></tr></table></div>
+          </div>
+        </div>
+        <div class="clear">
+          <hr/>
+        </div>
+        <div id="footer">
+          <div class="xright">Copyright &#169;          
+   
+          2011-2014
+    
+                  GIS Competence Center, min. EZ.
+            All Rights Reserved.    
+  
+
+  
+    
+            
+  
+    
+  </div>
+          <div class="clear">
+            <hr/>
+          </div>
+        </div>
+    </div>
+  </body>
+</html>

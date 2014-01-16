@@ -1,0 +1,266 @@
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>VPZIEK webapp 0.1-SNAPSHOT - 
+		Bekendmakingen ophalen sequence diagram</title>
+    <link rel="stylesheet" href="./css/maven-theme.css" type="text/css" />
+    <link rel="stylesheet" href="./css/maven-base.css" type="text/css"/>
+    <link rel="stylesheet" href="./css/prettify.css" type="text/css"/>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+    <script type="text/javascript" src="./js/prettify.js"></script>
+    <script type="text/javascript" src="./js/niftycube.js"></script>
+    <script type="text/javascript">
+        window.onload=function() {
+            Nifty("div\#wrapper", "big");
+            Nifty("div#breadcrumbs", "small");
+            Nifty("div\#navcolumn", "small");
+            Nifty("div.source", "medium");
+            prettyPrint();
+        }
+    </script>
+          <meta name="author" content="Mark Prins" />
+        <meta name="Date-Revision-yyyymmdd" content="20140116" />
+                                                    
+<meta content="faq" name="faq"/>
+                    </head>
+  <body>
+    <div id="wrapper">
+        <div id="banner">
+                        <div id="bannerLeft">
+    
+                                            <img src="images/logo.png" alt="Min EL&I" />
+    
+            </div>
+                              <div id="bannerRight">
+    
+            VPZIEK webapp
+    
+            </div>
+                <div class="clear">
+            <hr/>
+          </div>
+        </div>
+        <div id="breadcrumbs">
+              
+  
+
+  
+    
+            
+  
+    
+            <div class="xleft">
+        <span id="publishDate">Meest recente publicatie: 16-januari-2014</span>
+                  &nbsp;| <span id="projectVersion">Versie: 0.1-SNAPSHOT</span>
+                      </div>
+                <div class="xright">            <a href="./">Wiki</a>
+            
+  
+
+  
+    
+            
+  
+    
+  </div>
+          <div class="clear">
+            <hr/>
+          </div>
+        </div>
+        <div id="leftColumn">
+          <div id="navcolumn">
+               
+  
+
+  
+    
+            
+  
+    
+                       <h5>Links</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="${project.issueManagement.url}">${project.issueManagement.system}</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://gisdemo.agro.nl/jenkins/job/geozet-4-2d/" class="externalLink">Jenkins</a>
+          </li>
+          </ul>
+              <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="releasenotes.html">Release notes</a>
+          </li>
+              
+    <li class="none">
+                    <a href="ontwikkelhandleiding.html">Ontwikkel handleiding</a>
+          </li>
+              
+    <li class="none">
+                    <a href="technisch_ontwerp.html">Technisch Ontwerp Core</a>
+          </li>
+              
+    <li class="none">
+                    <a href="techdoc_geozet_viewer.odt">Technisch Ontwerp Enhanced</a>
+          </li>
+              
+    <li class="none">
+                    <a href="functioneel_ontwerp.html">Functioneel Ontwerp</a>
+          </li>
+              
+    <li class="none">
+                    <a href="meldingen.html">FAQ meldingen</a>
+          </li>
+              
+    <li class="none">
+                    <a href="faq.html">FAQ algemeen</a>
+          </li>
+          </ul>
+              <h5>Installatie</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="releasenotes.html">Release notes</a>
+          </li>
+              
+    <li class="none">
+                    <a href="installatiehandleiding.html">Installatie handleiding</a>
+          </li>
+          </ul>
+              <h5>Deployed Builds</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://gisdemo.agro.nl/vpziek/" class="externalLink">webapp</a>
+          </li>
+          </ul>
+                        <h5>Project documentatie</h5>
+            <ul>
+              
+                
+                    
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project informatie</a>
+                </li>
+              
+                
+                    
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project rapporten</a>
+                </li>
+          </ul>
+                                                     
+                        
+                        
+            <a href="http://www.geotools.org/" title="Geotools" class="poweredBy">
+                            <img  class="poweredBy"
+                    alt="Geotools"
+                    src="images/geotools.png"
+                    width="90"
+                    height="30"
+              />
+            </a>
+                                   
+  
+
+  
+    
+            
+  
+    
+            </div>
+        </div>
+        <div id="bodyColumn">
+          <div id="contentBox">
+            
+
+	
+		<div class="section">
+<h2>Bekendmakingen ophalen<a name="Bekendmakingen_ophalen"></a></h2>
+			
+<p>Onderstaand het sequence diagram voor het opvragen van
+				bekendmakingen.</p>
+			
+<p>
+				Het request voor dit diagram is:
+				<tt>
+					<a class="externalLink" href="http://localhost:8080/geozetviewer/bekendmakingen?filter=consument&amp;filter=overheid&amp;filter=rechtspraak&amp;filter=verkeer&amp;filter=wonen&amp;straal=500&amp;xcoord=148188.0&amp;ycoord=469279.0&amp;gevonden=baarn+%28plaats%29&amp;usefilter=true">
+						http://localhost:8080/geozetviewer/bekendmakingen?filter=consument&amp;filter=overheid&amp;filter=rechtspraak&amp;filter=verkeer&amp;filter=wonen&amp;straal=500&amp;xcoord=148188.0&amp;ycoord=469279.0&amp;gevonden=baarn+%28plaats%29&amp;usefilter=true
+					</a>
+				</tt>
+			</p>
+			<!-- <object data="seq-bekendmakingen.svg" type="image/svg+xml" height="100%" 
+				width="100%" title="sequence diagram" /> -->
+		</div>
+	
+
+          </div>
+        </div>
+        <div class="clear">
+          <hr/>
+        </div>
+        <div id="footer">
+          <div class="xright">Copyright &#169;          
+   
+          2011-2014
+    
+                  GIS Competence Center, min. EZ.
+            All Rights Reserved.    
+  
+
+  
+    
+            
+  
+    
+  </div>
+          <div class="clear">
+            <hr/>
+          </div>
+        </div>
+    </div>
+  </body>
+</html>
