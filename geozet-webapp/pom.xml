@@ -358,7 +358,7 @@
 			<plugin>
 				<groupId>net.alchim31.maven</groupId>
 				<artifactId>yuicompressor-maven-plugin</artifactId>
-				<version>1.4</version>
+				<version>1.4.0</version>
 				<executions>
 					<execution>
 						<phase>process-classes</phase>
