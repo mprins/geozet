@@ -1,8 +1,17 @@
 language: java
+
 script: mvn --file geozet-webapp/pom.xml clean test verify
+
 jdk:
   - openjdk7
   - oraclejdk8
+
 branches:
-  only:
-    - geozet-4-2d
+  except:
+    - master
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    # some tests fail due to different attribute ordering in string serialization
+    - oraclejdk8
